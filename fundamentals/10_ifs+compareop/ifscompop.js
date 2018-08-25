@@ -1,109 +1,109 @@
-// // ================================================
-// // If Else Statements & Comparison Operators
-// // ================================================
+// ================================================
+// If Else Statements & Comparison Operators
+// ================================================
 
-// const id = 100;               // Switch between const id = '100' string version
+const id = 100;               // Switch between const id = '100' string version
 
-// // Equal Comparison Operators (Equal To)
-// /*
-// This ```==``` is just testing the value, it's not testing the type. If ``const id == '100'`` to a string of 100, you'll still get Correct! bc in this case, it doesn't matter if it's a string or a number, it's still 100. This isn't really the way you want to do it most times. Rather, you should be testing the value and the type with ```===``` bc it'll stop a lot of issues and errors from arising later.
-// */
+// Equal Comparison Operators (Equal To)
+/*
+This ```==``` is just testing the value, it's not testing the type. If ``const id == '100'`` to a string of 100, you'll still get Correct! bc in this case, it doesn't matter if it's a string or a number, it's still 100. This isn't really the way you want to do it most times. Rather, you should be testing the value and the type with ```===``` bc it'll stop a lot of issues and errors from arising later.
+*/
 
-// if (id == 101) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');        // Logs Incorrect!
-// }
+if (id == 101) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');        // Logs Incorrect!
+}
 
-// // Not Equal To
+// Not Equal To
 
-// if (id != 101) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');        // Logs Correct!
-// }
+if (id != 101) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');        // Logs Correct!
+}
 
-// // Equal to Value and Type
-// /*
-// If ``const id == '100'`` to a string of 100, you'll still get Incorrect! bc in this case inside the if statement, the value is a number, not a string.
-// */
+// Equal to Value and Type
+/*
+If ``const id == '100'`` to a string of 100, you'll still get Incorrect! bc in this case inside the if statement, the value is a number, not a string.
+*/
 
-// if (id === 101) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');        // Logs Incorrect!
-// }
+if (id === 101) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');        // Logs Incorrect!
+}
 
-// // Not Equal Value and Type
-// /*
-// You can also do not equal for value and types with ```!==```
-// */
+// Not Equal Value and Type
+/*
+You can also do not equal for value and types with ```!==```
+*/
 
-// if (id !== 101) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');        // Logs Incorrect!
-// }
+if (id !== 101) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');        // Logs Incorrect!
+}
 
-// // Test if ```const id``` is undefined with typeof
-// /*
-// This is if you want to test if something is undefined, meaning like it's not there at all, then you want to use ```typeof id !== 'undefined'```
-// */
+// Test if ```const id``` is undefined with typeof
+/*
+This is if you want to test if something is undefined, meaning like it's not there at all, then you want to use ```typeof id !== 'undefined'```
+*/
 
-// if (typeof id !== 'undefined') {
-//   // use template literal
-//   console.log(`The ID is ${id}`);
-// } else {
-//   console.log('No ID!');              // Comment on and off on ```const id```
-// }
+if (typeof id !== 'undefined') {
+  // use template literal
+  console.log(`The ID is ${id}`);
+} else {
+  console.log('No ID!');              // Comment on and off on ```const id```
+}
 
-// // Greater Than
+// Greater Than
 
-// if (id > 200) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');            // Logs Incorrect! bc id = 100    
-// }
+if (id > 200) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');            // Logs Incorrect! bc id = 100    
+}
 
-// // Greater Than or Equal To
-// if (id >= 200) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');              
-// }
+// Greater Than or Equal To
+if (id >= 200) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');              
+}
 
-// // Less Than
-// if (id < 200) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');            // Logs Correct! bc id = 100    
-// }
+// Less Than
+if (id < 200) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');            // Logs Correct! bc id = 100    
+}
 
-// // Less Than or Equal To
-// if (id <= 200) {
-//   console.log('Correct!');
-// } else {
-//   console.log('Incorrect!');
-// }
+// Less Than or Equal To
+if (id <= 200) {
+  console.log('Correct!');
+} else {
+  console.log('Incorrect!');
+}
 
-// // Else If
-// const color = 'blue';               // Change between red, blue and yellow
+// Else If
+const color = 'blue';               // Change between red, blue and yellow
 
-// if (color === 'red') {
-//   console.log('Color is red');
-// } else if (color === 'blue'){
-//   console.log('Color is blue');
-// } else {
-//   console.log('Color is not red or blue')
-// }
+if (color === 'red') {
+  console.log('Color is red');
+} else if (color === 'blue'){
+  console.log('Color is blue');
+} else {
+  console.log('Color is not red or blue')
+}
 
 // Logical Operators
 /*
 If we want to test more than one thing, use these operators. In this example, we're combining if-else statement and logical operators.
 */
 
-// // ```&&``` represents AND
-// // The ```&&``` operator makes sure that both conditions you want are true.
+// ```&&``` represents AND
+// The ```&&``` operator makes sure that both conditions you want are true.
 
 const name = 'Steve';
 const age = 28;                   // Change the age value number
