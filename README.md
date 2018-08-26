@@ -4,7 +4,7 @@ This is a quick guide for anyone who is interested in learning Modern JavaScript
 
 Feel free to fork or star this repo and learn from it. This starts off very beginner with fundamentals and will grow more.
 
-## Material Covers
+## Fundamentals
 
 * Variables: var, let and const
 * Data Types in JavaScript
@@ -21,3 +21,17 @@ Feel free to fork or star this repo and learn from it. This starts off very begi
 * General Loops
 * The Window Object
 * Block Scope with let & const
+
+## DOM Manipulation & Events
+
+* The Document Object
+* DOM Selectors for Single Elements
+* DOM Selectors for Multiple Elements
+* Traversing the DOM
+* Creating Elements
+* Removing & Replacing Elements
+* Event Listeners & The Event Object
+* Mouse Events
+* Keyboard & Input Events
+* Event Bubbling & Delegation
+* Local Storage & Session Storage
