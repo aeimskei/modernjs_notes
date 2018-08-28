@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+  <title>Keyboard & Input Events</title>
+</head>
+<body>
+  <h1>Keyboard & Input Events</h1>
+    <form id="task-form" action="index.html">
+      <div>
+        <input type="text" name="task" id="task" value="Walk the dog">
+        <label for="task">New Task</label>
+      </div>
+
+      <!-- add new select list to test -->
+      <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+
+      <input type="submit" value="Add Task" class="btn">
+    </form>
+
+    <div class="the-parent">
+      <h1 id="task-title" class="test">List</h1>
+      
+      <ul class="collection">
+        <li class="collection-item">
+          List Item
+          <a href="#" class="delete-item">
+            <i class="fa fa-remove"></i>
+          </a>
+        </li> 
+        <li class="collection-item">
+          List Item
+          <a href="#" class="delete-item">
+            <i class="fa fa-remove"></i>
+          </a>
+        </li> 
+        <li class="collection-item">
+          List Item
+          <a href="#" class="delete-item">
+            <i class="fa fa-remove"></i>
+          </a>
+        </li> 
+      </ul>
+      <a class="clear-tasks" href="#">Clear Tasks</a>
+    </div>
+
+  <script src="input.js"></script>
+</body>
+</html>
