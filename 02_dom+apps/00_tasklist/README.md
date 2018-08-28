@@ -71,9 +71,26 @@ Underneath the ```<div class="input-field col s12">``` in ```<div class="card-ac
 
 ## Add Task Items
 
+**Define UI Variables**
+
+<kbd>![alt text](img/definevars.png "screenshot")</kbd>
 
 
+Our ```addTask``` function will take in one parameter of ```e``` to handle our event. Also add in ```e.preventDefault()``` to stop the default behavior which is a form submit.
 
+Inside, create a condition to check if there is a value in the input field. If ```taskInput``` is equal to nothing, then, we'll alert the user to input something.
+
+**Function for Add Task**
+
+```
+function addTask(e) {
+  if (taskInput.value === '') {
+    alert('Please add a task');
+  }
+
+  e.preventDefault();
+}
+```
 
 ## Technology
 * Vanilla JavaScript
