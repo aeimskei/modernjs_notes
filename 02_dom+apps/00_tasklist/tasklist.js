@@ -38,11 +38,96 @@ Our ```addTask``` function will take in one parameter of ```e``` to handle our e
 Inside, create a condition to check if there is a value in the input field. If ```taskInput``` is equal to nothing, then, we'll alert the user to input something.
 */
 
-// Function for Add Task
+// // Function for Add Task
+// function addTask(e) {
+//   if (taskInput.value === '') {
+//     alert('Please add a task');
+//   }
+
+//   e.preventDefault();
+// }
+
+/*
+Now, when we add a task, we want to be able to make an ```<li>``` element. First, create a variable ```const li = document.createElement('li');``` and then add a class to it. Next, ```createTextNode``` and ```appendChild``` to the li variable. Inside ```createTextNode()``` add whatever you want to pass into the input to be the text node, we want the value of ```taskInput```.
+*/
+
+// function addTask(e) {
+//   if (taskInput.value === '') {
+//     alert('Please add a task');
+//   }
+
+//   // create list-item
+//   const li = document.createElement('li');
+
+//   // add class
+//   li.className = 'collection-item'; // refering to Materialize's className
+
+//   // create text node and append to the li
+//   li.appendChild(document.createTextNode(taskInput.value))
+
+
+//   e.preventDefault();
+// }
+
+/*
+Next, create a new link element for the ```x``` icon link to delete the task. First, create ```const link = document.createElement('a');``` and then add a class to that with ```link.className = 'delete-item secondary-content';```. In Materialize, if you want something to the right, use ```secondary-content``` for class. Then add the icon HTML ```link.innerHTML = '<i class="fa fa-remove"></i>';``` and then append the link to the li with ```li.appendChild(link);```
+*/
+
+// function addTask(e) {
+//   // check if input field is empty
+//   if (taskInput.value === '') {
+//     alert('Please add a task');
+//   }
+
+//   // create new li for input value
+//   const li = document.createElement('li');
+//   li.className = 'collection-item'; // refering to Materialize's className
+//   li.appendChild(document.createTextNode(taskInput.value))
+
+//   // create new link element
+//   const link = document.createElement('a');
+
+//   // add class
+//   link.className = 'delete-item secondary-content'; // refering to Materialize's className
+
+//   // add icon html
+//   link.innerHTML = '<i class="fa fa-remove"></i>';
+
+//   // append the link variable to li
+//   li.appendChild(link);
+
+//   // test
+//   console.log(li);
+
+//   e.preventDefault();
+// }
+
+/*
+Finally, add li to ul, the <ul> is on the actual HTML we created earlier.
+*/
+
 function addTask(e) {
+  // check if input field is empty
   if (taskInput.value === '') {
     alert('Please add a task');
   }
+
+  // create new li for input value
+  const li = document.createElement('li');
+  li.className = 'collection-item'; // refering to Materialize's
+  li.appendChild(document.createTextNode(taskInput.value))
+
+  // create new link element
+  const link = document.createElement('a');
+  link.className = 'delete-item secondary-content'; // refering to Materialize's
+  link.innerHTML = '<i class="fa fa-remove"></i>';
+  li.appendChild(link);
+
+  // append li to ul
+  taskList.appendChild(li);
+
+  // clear input
+  taskInput.value = '';
 
   e.preventDefault();
 }
