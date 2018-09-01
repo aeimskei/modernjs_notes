@@ -331,6 +331,58 @@ function filterTasks(e) {
 
 <kbd>![alt text](img/filter.png "screenshot")</kbd>
 
+## Persist the Data to Local Storage
+
+Now that the UI and functionality is done, let's use Local Storage to persist the data, so when we add a task, it actually stays.
+
+Again, Local Storage is part of JavaScript, so we don't have to use any thrid party libraries, we can just go ahead an use it.
+
+First, go to the ```addTask``` function, and after  this chunk of code in it,
+
+```
+// create new li for input value
+const li = document.createElement('li');
+li.className = 'collection-item'; // refering to Materialize's
+li.appendChild(document.createTextNode(taskInput.value))
+
+// create new link element
+const link = document.createElement('a');
+link.className = 'delete-item secondary-content'; // refering to Materialize's
+link.innerHTML = '<i class="fa fa-remove"></i>';
+li.appendChild(link);
+
+// append li to ul
+taskList.appendChild(li);
+```
+
+add a code to store that ```addTask``` into Local Storage with ```storeTaskInLocalStorage();``` and we're going to have to add the ```task``` which comes from the value of ```taskInput.value``` like this, ```storeTaskInLocalStorage(taskInput.value);```
+
+Next, below the ```addTask``` function, create the ```storeTaskInLocalStorage``` function that'll take in the task and then define and initialize a variable called ```tasks``` and then we want to check Local Storage to see if there's any task in there. 
+
+If ```localStorage.getItem('tasks') === null``` that mean if there's nothing in there, set that ```let tasks;``` varibale to an empty array ```[]```. 
+
+Else, set ```tasks``` to whatever that's in Local Storage. Remember, Local Storage can only store strings, so we're going to have to parse it as ```JSON.parse()``` and inside of that get Local Storage.
+
+Then, we want to push ```task``` that was passed as a parameter into ```tasks``` array.
+
+The last thing to do is set it back to Local Storage and remember to store it as a string, so store ```'tasks'``` and then store the variable ```tasks``` wrapped in a function called ```JSON.stringify``` so that you can actually store it.
+
+```
+function storeTaskInLocalStorage(task) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('task', JSON.stringify(tasks));
+}
+```
+
+
 
 ## Technology
 * Vanilla JavaScript

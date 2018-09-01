@@ -226,7 +226,9 @@ const taskInput = document.querySelector('#task');
 // INITIALIZE
 init();
 
+// ======================================
 // FUNCTION TO LOAD EVENT LISTENERS
+// ======================================
 function init() {
   // Add task event
   form.addEventListener('submit', addTask);
@@ -238,7 +240,9 @@ function init() {
   filter.addEventListener('keyup', filterTasks);
 }
 
+// ======================================
 // FUNCTION TO ADD TASK
+// ======================================
 function addTask(e) {
   // check if input field is empty
   if (taskInput.value === '') {
@@ -259,13 +263,34 @@ function addTask(e) {
   // append li to ul
   taskList.appendChild(li);
 
+  // store to Local Storage
+  storeTaskInLocalStorage(taskInput.value);
+
   // clear input
   taskInput.value = '';
 
   e.preventDefault();
 }
 
+// ======================================
+// STORE IN Local Storage
+// ======================================
+function storeTaskInLocalStorage(task) {
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// ======================================
 // FUNCTION TO REMOVE TASK
+// ======================================
 function removeTask(e) {
   if (e.target.parentElement.classList.contains('delete-item')) {
     // console.log(e.target);   // Test, logs <i>..</i>
@@ -275,7 +300,9 @@ function removeTask(e) {
   }
 }
 
+// ======================================
 // FUNCTION TO CLEAR TASK
+// ======================================
 function clearTasks() {
   // taskList.innerHTML = '';
 
@@ -288,17 +315,6 @@ function clearTasks() {
 // ======================================
 // FILTER Through the Tasks
 // ======================================
-/*
-Add another event listener for filter, ```filter.addEventListener('keyup', filterTasks);``` inside the ```init()``` function, it's going to use the 'keyup' event type and call the filterTasks function.
-
-First, get the value of whatever that's being typed in the input field. Turn it to lowercase so we can match correctly even if the user accidently has the caps-lock on.
-
-Next, take all of the list items with ```document.querySelectorAll('.collection-item').forEach();``` and we can use ```forEach()``` bc ```querySelectorAll returns a ```NodeList```, but if we used ```getElementByClassName``` that would return an ```HTML Collection``` which we would have to convert to an array in order to use ```forEach()```. In the ```forEach()``` pass a function with ```task``` as a parameter for our iterator. Then, set a variable for ```item``` and set it to ```task.firstChild``` and then we want the ```textContent``` of that ```firstChild```. 
-
-Afterwards, create a condition to check inside of ```document.querySelectorAll('.collection-item').forEach(function(task) {...}``` if ```item.toLowerCase()``` to make in not case-sensitive, and ```indexOf(text)``` and pass in the ```text``` that's the text that's being typed, we want to search in our list and pass it to ```indexOf()```, if there's no match, it's going to equal to ```-1``` so we want to say, if it's not equal to negative one ```!=``` then we want the task to show, set it to show with ```task.style.display = 'block';``` else hide it with 
-```task.style.display = 'none';```
-*/
-
 function filterTasks(e) {
   // get the input field value
   const text = e.target.value.toLowerCase();
