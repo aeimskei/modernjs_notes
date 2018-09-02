@@ -66,3 +66,9 @@ Finally, for our Submit button with a type of submit.
   <input type="text" value="Calculate" class="btn btn-dark btn-block">
 </div>
 ```
+
+<kbd>![alt text](img/layout01.png "screenshot")</kbd>
+
+Then, add the results section.
+
+<kbd>![alt text](img/layout02.png "screenshot")</kbd>

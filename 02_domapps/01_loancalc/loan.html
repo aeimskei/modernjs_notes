@@ -42,9 +42,44 @@
               </div>
               <!-- Submit Button -->
               <div class="form-group">
-                <input type="text" value="Calculate" class="btn btn-dark btn-block">
+                <input type="text" value="Calculate" class="btn btn-secondary btn-block">
               </div>
             </form>
+            <hr>
+            <!-- Loader/Loading -->
+            <!-- <div id="id">
+              <img src="img/loading.gif" alt="Shows loading">
+            </div> -->
+            <!-- Output Results of Calculations -->
+            <div id="results" class="pt-2">
+              <h3>Results</h3>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Monthly Payment</span>
+                  </div>
+                  <input type="number" class="form-control" id="monthly-payment" aria-label="Interest Amount (to the nearest dollar)" disabled>
+                </div>
+              </div>
+              <!-- Total Payment -->
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Total Payment</span>
+                  </div>
+                  <input type="number" class="form-control" id="total-payment" aria-label="Total Payment (to the nearest dollar)" disabled>
+                </div>
+              </div>
+              <!-- Total Interest -->
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Total Interest</span>
+                  </div>
+                  <input type="number" class="form-control" id="total-interest" aria-label="Total Interest (to the nearest dollar)" disabled>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -55,5 +90,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="loan.js"></script>
   </body>
 </html>
