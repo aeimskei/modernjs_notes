@@ -92,3 +92,22 @@ function calculateResults(e) {
 ```
 
 <kbd>![alt text](img/submitevent.png "screenshot")</kbd>
+
+Next, grab all the info from the UI and put each in const variables and place them inside the ```calculateResults``` function.
+
+```
+const amount = document.querySelector('#amount');
+const interest = document.querySelector('#interest');
+const years = document.querySelector('#years');
+const monthlyPayment = document.querySelector('#monthly-payment');
+const totalPayment = document.querySelector('#total-payment');
+const totalInterest = document.querySelector('#total-interest');
+```
+
+To calculate, we'll do it inside the ```calculateResults``` function as well below the UI variables. We'll setup formula variables.
+
+* Principal - is the amount, we want the input as a number value as float, so we have to use ```parseFloat()``` that'll turn it into a decimal, pass the ```amount.value``` as the parameter. ```amount``` is talking about the input value from the client-side, the UI variable that we create above.
+
+* Calculated Interest - this is the ```interest``` input value, the variable we created above grabbing from the input on UI, as a float. Then we're gonna divide by ```100``` and also ```12``` to give us our calculated interest.
+
+* Calculate Payments - is gonna be the ```years``` value.
