@@ -202,3 +202,27 @@ function showError(error) {
 Use the method ```setTimeout()``` to have something happen after a certain amount of seconds. It takes in two parameters, one is a function, we'll create a name function later and use it as our first parameter, ```clearError```, and the second parameter is the number of seconds, it's in milliseconds.
 
 <kbd>![alt text](img/error.png "screenshot")</kbd>
+
+## Implement Loading Image to Improve UX
+
+Use CCS to iniitally hide the loading image and the results section. Take the id of ```#loading``` and ```#results``` and set display to ```none```.
+
+Now in the JS file, change the event listener for ```loadForm``` to call another function, so that it doesn't load ```calculateResults``` right away. Also, in ```calculateResults``` take out the ```e``` and ```e.preventDefault()```. Instead, move ```e.preventDefault()``` to new function that's the second parameter to the event listener after ```'submit'```. Also, remember to add the ```e``` as the parameter for the function.
+
+```
+loanForm.addEventListener('submit', function(e) {
+
+
+  e.preventDefault();
+});
+```
+
+What we want to do is show the loader, after the submit button is clicked. Should show for two seconds before the results calculation appears. Use ```setTimeout()``` and call ```calculateResults``` and set timer for two seconds.
+
+Also remember to hide the loading gif when error appears.
+
+<kbd>![alt text](img/loading.png "screenshot")</kbd>
+
+## That's the wrap
+
+A small project, but has a lot to it dealing with the DOM, a good foundation to create own calculator or convertors like degrees.
