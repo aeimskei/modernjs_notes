@@ -111,3 +111,23 @@ To calculate, we'll do it inside the ```calculateResults``` function as well bel
 * Calculated Interest - this is the ```interest``` input value, the variable we created above grabbing from the input on UI, as a float. Then we're gonna divide by ```100``` and also ```12``` to give us our calculated interest.
 
 * Calculate Payments - is gonna be the ```years``` value.
+
+```
+const principal = parseFloat(amount.value);
+const calcInterest = parseFloat(interest.value) / 100 / 12;
+const calcPayments = parseFloat(years.value);
+```
+
+Compute monthly payments and check to see if monthly result is a finite number. Use the JavaScript method, ```isFinite()```. If it is finite, display in the results field of Monthly Payment, the variable we created as ```monthlyPayment``` add/connect with ```value``` in that field, and set it to ```monthly```. We want this to have decimal points so use the method ```toFixed()``` and set the number of decimals you want and here, we want ```2```. Next thing we want is the Total Payment value, which we created ```totalPayment``` variable. So, ```totalPayment.value``` and set that to ```monthly``` times the ```calcPayments``` with ```.toFixed(2)``` for our two decimal places. The last thing we want is ```totalInterest.value``` and set to ```((monthly * calcPayments) - principal).toFixed(2)```
+
+```
+if (isFinite(monthly)) {
+  monthlyPayment.value = monthly.toFixed(2);
+  totalPayment.value = (monthly * calcPayments).toFixed(2);
+  totalInterest.value = ((monthly * calcPayments) - principal).toFixed(2);
+} else {
+  console.log('Error, please check your numbers.');
+} 
+```
+
+<kbd>![alt text](img/calctest.png "screenshot")</kbd>

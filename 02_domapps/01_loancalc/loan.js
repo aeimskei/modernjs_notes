@@ -20,7 +20,20 @@ function calculateResults(e) {
   // Do the calculations
   const principal = parseFloat(amount.value);
   const calcInterest = parseFloat(interest.value) / 100 / 12;
-  const calcPayments = parseFloat(years.value);
+  const calcPayments = parseFloat(years.value) * 12;
+
+  // Compute monthly payment
+  const x = Math.pow(1 + calcInterest, calcPayments);
+  const monthly = (principal * x * calcInterest) / (x - 1);
+
+  // Validate if monthly payment is finite
+  if (isFinite(monthly)) {
+    monthlyPayment.value = monthly.toFixed(2);
+    totalPayment.value = (monthly * calcPayments).toFixed(2);
+    totalInterest.value = ((monthly * calcPayments) - principal).toFixed(2);
+  } else {
+    console.log('Error, please check your numbers.');
+  } 
 
   e.preventDefault();
 }
