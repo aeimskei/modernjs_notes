@@ -37,3 +37,32 @@ We're gonna use ```.input-group``` from Bootstrap bc we want to put the ```$``` 
   </div>
 </form>
 ```
+
+Now create a form input group for the interest amount, and just change the input id to ```interest``` so we can grab and use it later. Also change the placeholder holder and aria-lable to interest.
+
+```
+<div class="form-group">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">%</span>
+    </div>
+    <input type="number" class="form-control" id="interest" aria-label="Interest Amount (to the nearest dollar)" placeholder="Interest Amount">
+  </div>
+</div>
+```
+
+Next thing we want is repayment years.
+
+```
+<div class="form-group">
+  <input type="number" class="form-control" id="years" aria-label="Years to Repay" placeholder="Years to Repay">
+</div>
+```
+
+Finally, for our Submit button with a type of submit.
+
+```
+<div class="form-group">
+  <input type="text" value="Calculate" class="btn btn-dark btn-block">
+</div>
+```
