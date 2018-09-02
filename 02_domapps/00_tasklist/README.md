@@ -382,7 +382,47 @@ function storeTaskInLocalStorage(task) {
 }
 ```
 
+Next thing to do is show it in the UI, we need another function and also another event to load the function we call. In ```init()``` create a DOM load event. Add ```document.addEventListener('DOMContentLoaded', _);``` the ```DOMContentLoaded``` is an event that gets called when loaded and then call ```getTasks``` as the second parameter, a function that we'll need to create.
 
+In the ```getTasks``` function, same steps in checking if there are tasks, but then we want to loop through the tasks that are there. Inside the ```forEach()``` we want to create the DOM element like what we did with ```addTask```.
+
+<kbd>![alt text](img/tasksls.png "screenshot")</kbd>
+
+Now the tasks persist, store in Local Storage and also persist on the UI.
+
+<kbd>![alt text](img/persist.png "screenshot")</kbd>
+
+## Delete Data Local Storage
+
+Inside the ```removeTask()``` function, inside the if confirmation, call the function to remove task from local storage, will create later and pass in ```e.target.parentElement.parentElement``` its the actual element, which is the ```<li>```
+
+First, what we want to do is check local storage, put it into a variable liek what we did with local storage earlier, and then loop through it. We want to check to see if the ```taskItem.textContent``` matches the current ```task``` in the iteration. If it does, then that's the one we want to delete. Use splice() method. Pass in ```index``` as teh second parameter for ```forEach()``` and in the splice method, pass in index and 1.
+
+Then afterwards, below the ```forEach()```, we have to set Local Storage again.
+
+```
+function removeTaskFromLocalStorage(taskItem) {
+  // console.log(taskItem);  // test, logs the <li>
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function(task, index) {
+    if (taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+```
+
+## Clear Task List from Local Storage
+
+The last thing we want to do is the Clear Tasks button.
 
 ## Technology
 * Vanilla JavaScript

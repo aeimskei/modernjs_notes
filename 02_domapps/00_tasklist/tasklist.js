@@ -230,6 +230,8 @@ init();
 // FUNCTION TO LOAD EVENT LISTENERS
 // ======================================
 function init() {
+  // DOM load event
+  document.addEventListener('DOMContentLoaded', getTasks);
   // Add task event
   form.addEventListener('submit', addTask);
   // Remove task event
@@ -238,6 +240,34 @@ function init() {
   clearButton.addEventListener('click', clearTasks);
   // Filter tasks event
   filter.addEventListener('keyup', filterTasks);
+}
+
+// =========================================
+// FUNCTION TO GET TASKS from Local Storage
+// =========================================
+function getTasks() {
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function(task) {
+    // create new li for input value
+    const li = document.createElement('li');
+    li.className = 'collection-item'; // refering to Materialize's
+    li.appendChild(document.createTextNode(task))
+
+    // create new link element
+    const link = document.createElement('a');
+    link.className = 'delete-item secondary-content';
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    li.appendChild(link);
+
+    // append li to ul
+    taskList.appendChild(li);
+  });
 }
 
 // ======================================
@@ -289,16 +319,41 @@ function storeTaskInLocalStorage(task) {
 }
 
 // ======================================
-// FUNCTION TO REMOVE TASK
+// FUNCTION TO REMOVE TASK 
 // ======================================
 function removeTask(e) {
   if (e.target.parentElement.classList.contains('delete-item')) {
     // console.log(e.target);   // Test, logs <i>..</i>
     if (confirm('Are you sure you want to remove task?')) {
       e.target.parentElement.parentElement.remove();
+
+      // Remove task from Local Storage
+      removeTaskFromLocalStorage(e.target.parentElement.parentElement);
     }
   }
 }
+
+// ===========================================
+// FUNCTION TO REMOVE TASK from Local Storage
+// ===========================================
+function removeTaskFromLocalStorage(taskItem) {
+  // console.log(taskItem);  // test, logs the <li>
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function(task, index) {
+    if (taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 
 // ======================================
 // FUNCTION TO CLEAR TASK
