@@ -131,3 +131,47 @@ if (isFinite(monthly)) {
 ```
 
 <kbd>![alt text](img/calctest.png "screenshot")</kbd>
+
+## Error Alert for UI
+
+Error handling to show on the UI for client-side. We're gonna do the ```createElement``` method from the Document Object and build the alert on JavaScript, rather than just showing the error in the console.
+
+```
+const errorDiv = document.createElement('div');
+```
+
+Call a function called ```showError``` inside the check on the ```else``` section, we'll create later.
+
+```
+if (isFinite(monthly)) {
+  monthlyPayment.value = monthly.toFixed(2);
+  totalPayment.value = (monthly * calcPayments).toFixed(2);
+  totalInterest.value = ((monthly * calcPayments) - principal).toFixed(2);
+} else {
+  // console.log('Error, please check your numbers.');
+  showError('Please check your numbers');
+} 
+```
+
+Create ```showError``` function that'll take in ```error``` as a parameter. Create a variable ```errorDiv``` and set to ```document.createElement``` and the element we want to create is ```div```. 
+
+In Bootstrap, when you want to show an alert, use the class of ```alert``` and ```alert-danger``` to make it red. On our soon to be created ```divError``` element, add ```className``` and set it to ```alert alert-danger```.
+
+```
+errorDiv.className = 'alert alert-danger';
+```
+
+Next create text node and append to div. So, on ```errorDiv``` we want to ```appendChild``` bc we want to insert something into it, we're gonna create a text node with ```document.createTextNode(error)``` and the text is gonna be whatever that's passed in the ```error``` parameter.
+
+```
+errorDiv.appendChild(document.createTextNode(error));
+```
+
+Grab two elements. We want the ```.card``` as the parent div and put it before the Loan Calculater heading.
+
+```
+const card = document.querySelector('.card');
+const heading = document.querySelecotr('.heading');
+```
+
+Insert error before heading with ```card.insertBefore();``` you call it on a parent, and then you pass in the element you want to put in, like the ```errorDiv``` and put in whatever you want to insert before, which for us, the ```heading```.
