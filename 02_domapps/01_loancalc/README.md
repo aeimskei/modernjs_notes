@@ -175,3 +175,57 @@ const heading = document.querySelecotr('.heading');
 ```
 
 Insert error before heading with ```card.insertBefore();``` you call it on a parent, and then you pass in the element you want to put in, like the ```errorDiv``` and put in whatever you want to insert before, which for us, the ```heading```.
+
+```
+// Show Error - create new element
+function showError(error) {
+  // create a div
+  const errorDiv = document.createElement('div');
+
+  // grab two elements
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
+
+  // add class
+  errorDiv.className = 'alert alert-danger';
+
+  // create text node and append to div
+  errorDiv.appendChild(document.createTextNode(error));
+
+  // insert error above heading
+  card.insertBefore(errorDiv, heading);
+}
+```
+
+**Let's make the error dissappear too**
+
+Use the method ```setTimeout()``` to have something happen after a certain amount of seconds. It takes in two parameters, one is a function, we'll create a name function later and use it as our first parameter, ```clearError```, and the second parameter is the number of seconds, it's in milliseconds.
+
+```
+// Show Error - create new element
+function showError(error) {
+  // create a div
+  const errorDiv = document.createElement('div');
+
+  // grab two elements
+  const card = document.querySelector('.card');
+  const heading = document.querySelector('.heading');
+
+  // add class
+  errorDiv.className = 'alert alert-danger';
+
+  // create text node and append to div
+  errorDiv.appendChild(document.createTextNode(error));
+
+  // insert error above heading
+  card.insertBefore(errorDiv, heading);
+
+  // clear error after three seconds
+  setTimeout(clearError, 3000);
+}
+
+// Clear Error Function
+function clearError() {
+  document.querySelector('.alert').remove();
+}
+```
