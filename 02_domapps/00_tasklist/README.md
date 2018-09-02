@@ -1,5 +1,10 @@
 # Task List App
 
+## Technology
+* Vanilla JavaScript
+* HTML, Materialize CSS
+* Local Storage
+
 ## Setup UI
 
 **Get these CDNs:**
@@ -422,9 +427,29 @@ function removeTaskFromLocalStorage(taskItem) {
 
 ## Clear Task List from Local Storage
 
-The last thing we want to do is the Clear Tasks button.
+The last thing we want to do is the Clear Tasks button. Create a function to clear tasks from Local Storage. Remember to call the new function the ```clearTasks()``` function. Just used ```localStorage.clear();```
 
-## Technology
-* Vanilla JavaScript
-* HTML, Materialize CSS
-* Local Storage
+```
+// ==========================================
+// FUNCTION TO CLEAR TASK
+// ==========================================
+function clearTasks() {
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+
+  // call clear tasks from Local Storage
+  clearTasksFromLocalStorage();
+}
+
+// ==========================================
+// FUNCTION TO CLEAR TASK from Local Storage
+// ==========================================
+function clearTasksFromLocalStorage() {
+  localStorage.clear();
+}
+```
+
+## That's the wrap!
+
+Now you have an application where we can create tasks, get persisted to Local Storage, so we can leave and come back and it'll still have the info, we can delete them, clear them and filter them. This projet gives you some insights on how to work with the DOM and work with Local Storage.

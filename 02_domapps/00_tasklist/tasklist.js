@@ -358,6 +358,18 @@ function removeTaskFromLocalStorage(taskItem) {
 // ======================================
 // FUNCTION TO CLEAR TASK
 // ======================================
+// function clearTasks() {
+//   // taskList.innerHTML = '';
+
+//   // while loop is faster
+//   while (taskList.firstChild) {
+//     taskList.removeChild(taskList.firstChild);
+//   }
+// }
+
+// ==========================================
+// FUNCTION TO CLEAR TASK
+// ==========================================
 function clearTasks() {
   // taskList.innerHTML = '';
 
@@ -365,6 +377,16 @@ function clearTasks() {
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
+
+  // call clear tasks from Local Storage
+  clearTasksFromLocalStorage();
+}
+
+// ==========================================
+// FUNCTION TO CLEAR TASK from Local Storage
+// ==========================================
+function clearTasksFromLocalStorage() {
+  localStorage.clear();
 }
 
 // ======================================
