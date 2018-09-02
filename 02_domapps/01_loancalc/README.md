@@ -72,3 +72,23 @@ Finally, for our Submit button with a type of submit.
 Then, add the results section.
 
 <kbd>![alt text](img/layout02.png "screenshot")</kbd>
+
+## Functionality to Our Calculator
+
+```
+// Listen for Submit on Form
+const loanForm = document.querySelector('#loan-form');
+
+// Add Event Listeners
+loanForm.addEventListener('submit', calculateResults);
+
+
+// Function to calculateResults()
+function calculateResults(e) {
+  console.log('Calculating...'); // test if function works
+
+  e.preventDefault();
+}
+```
+
+<kbd>![alt text](img/submitevent.png "screenshot")</kbd>
