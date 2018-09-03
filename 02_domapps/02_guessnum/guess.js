@@ -2,7 +2,7 @@
 let min = 1;
 let max = 20;
 let winningNumber = 19;
-let guessesLeft = 3;
+let guessLeft = 3;
 
 // Variables for UI Elements
 const game = document.querySelector('#game');
@@ -35,12 +35,27 @@ function submitGuess() {
 
   // Check if it's the correct winning number
   if (guess === winningNumber) {
-    // disable the input
+    // disable the input when guess is correct and won
     guessInput.disabled = true;
     // change border color when win
     guessInput.style.borderColor = 'green';
     // set message to let the player know they won
     setMessage(`Your guess ${winningNumber} is correct! You Win!`, 'green');
+  } else {
+    // lose case, wrong number
+    guessLeft -= 1;
+
+    // check to see if there are any guesses left
+    if (guessLeft === 0) {
+      // disable the input when guess limit is done, game over
+      guessInput.disabled = true;
+      // change border color when incorrect
+      guessInput.style.borderColor = 'red';
+      // setMessage you've lost
+      setMessage(`Game over, you lost. The correct number was ${winningNumber}.`, 'red')
+    } else {
+      // game continues, answer is wrong bu under max limit
+    }
   }
 }
 
