@@ -5,12 +5,17 @@ body {
 h1 {
   text-align: center;
   margin-bottom: 1rem;
+  color: #27A3D7;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 18px;
 }
 
 p {
-  text-align: center;
+  padding-left: 23px;
   color: lightslategray;
-  font-size: 18px;
 }
 
 #game {
