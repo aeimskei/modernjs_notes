@@ -1,8 +1,9 @@
 // Variables for Game Values
 let min = 1;
 let max = 20;
-let winningNumber = 19;
-let guessLeft = 5;
+let winningNumber = getRandomNumber(min, max);
+// console.log(winningNumber); // test to see in console
+let guessLeft = 3;
 
 // Variables for UI Elements
 const game = document.querySelector('#game');
@@ -15,6 +16,13 @@ const message = document.querySelector('.message');
 // Assign UI min and max to show dynamically, so remove hard code html
 minNumber.textContent = min;
 maxNumber.textContent = max;
+
+// Play Again event listener
+game.addEventListener('mousedown', function(e) {
+  if (e.target.className === 'play-again') {
+    window.location.reload();
+  }
+});
 
 // Create event listener for button to listen for click
 guessButton.addEventListener('click', submitGuess);
@@ -72,6 +80,20 @@ function endGame(won, msg) {
   message.style.color = color;
   // set message to let the player know they won
   setMessage(msg);
+
+  // assign 'Play Again' to button
+  guessButton.value = 'Play Again';
+  // add class name to the button
+  guessButton.className += 'play-again button-primary';
+  // event listener to parent for event delegation, above line 20-24
+}
+
+// Function for getWinningNumber
+function getRandomNumber(min, max) {
+  // get random decimal number
+  // console.log(Math.floor(Math.random() * (max - min + 1) + min));
+  // return puts it into the ```winningNumber``` variable
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 

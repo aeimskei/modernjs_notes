@@ -78,6 +78,41 @@ function setMessage(msg, color) {
 }
 ```
 
+**Function for Play Again**
+
 Currently, the code is very repetitive in the validation part. We will optimize the code by creating a separate helper function for ending the game.
 
 For border color, we'll do a conditional with a ternerary operator.
+
+```
+game.addEventListener('mousedown', function(e) {
+  if (e.target.className === 'play-again') {
+    window.location.reload();
+  }
+});
+```
+
+## Example of Hoisting
+
+**Function for Get Winning Number**
+
+Here, will show ```hoisting``` bc we'll calling ```getRandomNumber()``` at the top, but defining the function at the bottom. A lot of other languages, you can't do that, but you can with JavaScript.
+
+In JavaaScript, the functions can get hoisted where they're put to the top, when the execution of context runs, the functions are put to the top. Meaning, we can call function lines above, and declare them on the bottom.
+
+For example, ```getRandomNumber()``` is called on line 4.
+```
+let winningNumber = getRandomNumber(min, max);
+```
+
+But the function is defined towards the bottom starting at line 90. In this function, we're going to generate a random number between the min and max.
+
+```
+// Function for getWinningNumber
+function getRandomNumber(min, max) {
+  // get random decimal number
+  // console.log(Math.floor(Math.random() * (max - min + 1) + min));
+  // return puts it into the ```winningNumber``` variable
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+```
