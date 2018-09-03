@@ -1,7 +1,7 @@
 // Variables for Game Values
 let min = 1;
 let max = 20;
-let winningNum = 19;
+let winningNumber = 19;
 let guessesLeft = 3;
 
 // Variables for UI Elements
@@ -27,8 +27,20 @@ function submitGuess() {
 
   // Validate input check to make it's not blank, not less than min or above max and is a number
   if (isNaN(guess) || guess < min || guess > max) {
+    // change border color when incorrect
+    guessInput.style.borderColor = 'red';
     // if any of the above is true, alert a message
     setMessage(`Please enter a number between ${min} and ${max}.`, 'red')
+  }
+
+  // Check if it's the correct winning number
+  if (guess === winningNumber) {
+    // disable the input
+    guessInput.disabled = true;
+    // change border color when win
+    guessInput.style.borderColor = 'green';
+    // set message to let the player know they won
+    setMessage(`Your guess ${winningNumber} is correct! You Win!`, 'green');
   }
 }
 
