@@ -67,16 +67,6 @@ function submitGuess() {
     // if any of the above is true, alert a message
     setMessage(`Please enter a number between ${min} and ${max}.`, 'red')
   }
-
-  // Check if it's the correct winning number
-  if (guess === winningNumber) {
-    // disable the input
-    guessInput.disabled = true;
-    // change border color when win
-    guessInput.style.borderColor = 'green';
-    // set message to let the player know they won
-    setMessage(`Your guess ${winningNumber} is correct! You Win!`, 'green');
-  }
 }
 ```
 
@@ -87,3 +77,7 @@ function setMessage(msg, color) {
   message.textContent = msg;
 }
 ```
+
+Currently, the code is very repetitive in the validation part. We will optimize the code by creating a separate helper function for ending the game.
+
+For border color, we'll do a conditional with a ternerary operator.

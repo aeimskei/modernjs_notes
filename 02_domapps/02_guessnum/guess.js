@@ -31,38 +31,49 @@ function submitGuess() {
     guessInput.style.borderColor = 'red';
     // if any of the above is true, alert a message
     setMessage(`Please enter a number between ${min} and ${max}.`, 'red')
-  }
-
-  // Check if it's the correct winning number
-  if (guess === winningNumber) {
-    // disable the input when guess is correct and won
-    guessInput.disabled = true;
-    // change border color when win
-    guessInput.style.borderColor = 'green';
-    // set message to let the player know they won
-    setMessage(`Your guess ${winningNumber} is correct! You Win!`, 'green');
   } else {
-    // lose case, wrong number
-    guessLeft -= 1;
 
-    // check to see if there are any guesses left
-    if (guessLeft === 0) {
-      // disable the input when guess limit is done, game over
-      guessInput.disabled = true;
-      // change border color when incorrect
-      guessInput.style.borderColor = 'red';
-      // setMessage you've lost
-      setMessage(`Game over, you lost. The correct number was ${winningNumber}.`, 'red')
+    // Check if it's the correct winning number
+    if (guess === winningNumber) {
+      // end game for winning case
+      endGame(true, `Your guess ${winningNumber} is correct! You Win!`);
     } else {
-      // change border color when incorrect
-      guessInput.style.borderColor = 'red';
-      // clear input
-      guessInput.value = '';
-      // game continues, answer is wrong bu under max limit
-      setMessage(`${guess} is not correct. You have ${guessLeft}.`, 'red')
+      // lose case, wrong number
+      guessLeft -= 1;
+
+      // check to see if there are any guesses left
+      if (guessLeft === 0) {
+        // disable the input when guess limit is done, game over
+        endGame(false, `Game over, you lost. The correct number was ${winningNumber}.`);
+      } else {
+        // change border color when incorrect
+        guessInput.style.borderColor = 'red';
+        // clear input
+        guessInput.value = '';
+        // game continues, answer is wrong bu under max limit
+        setMessage(`${guess} is not correct. You have ${guessLeft}.`, 'red')
+      }
     }
   }
 }
+
+// Function for Game Over
+function endGame(won, msg) {
+  let color;
+  // use ternerary operator 
+  // if ```won``` is equal to true then make color green else red
+  won === true ? color = 'green' : color = 'red';
+
+  // disable the input when guess is correct and won
+  guessInput.disabled = true;
+  // change border color when win
+  guessInput.style.borderColor = color;
+  // set text color
+  message.style.color = color;
+  // set message to let the player know they won
+  setMessage(msg);
+}
+
 
 // Function for setMessage
 function setMessage(msg, color) {
