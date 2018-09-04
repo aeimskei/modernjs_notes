@@ -77,3 +77,17 @@ console.log(typeof num2);
 
 ## Boolean
 
+Primitive boolean vs. Boolean object:
+
+```
+const bool1 = true;
+const bool2 = new Boolean(true);
+
+console.log(bool1);
+console.log(bool2);
+
+console.log(typeof bool1);
+console.log(typeof bool2);
+```
+
+<kbd>![alt text](img/boolean.png "screenshot")</kbd>
