@@ -69,11 +69,24 @@
 // Function
 // ====================================
 
-const getSum1 = function(num1, num2) {
-  return num1 + num2;
+// const getSum1 = function(num1, num2) {
+//   return num1 + num2;
+// }
+
+// const getSum2 = new Function('num1', 'num2', 'return num1 + num2');
+
+// console.log(getSum1(2, 2));
+// console.log(getSum2(2, 2));
+
+// ====================================
+// Object
+// ====================================
+
+const james1 = {
+  name: 'James'
 }
 
-const getSum2 = new Function('num1', 'num2', 'return num1 + num2');
+const james2 = new Object({name: 'James'});
 
-console.log(getSum1(2, 2));
-console.log(getSum2(2, 2));
+console.log(james1);
+console.log(james2);

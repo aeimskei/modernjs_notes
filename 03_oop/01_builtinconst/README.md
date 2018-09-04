@@ -108,3 +108,18 @@ console.log(getSum2(2, 2));
 ```
 
 <kbd>![alt text](img/function.png "screenshot")</kbd>
+
+## Object
+
+```
+const james1 = {
+  name: 'James'
+}
+
+const james2 = new Object({name: 'James'});
+
+console.log(james1);
+console.log(james2);
+```
+
+<kbd>![alt text](img/object.png "screenshot")</kbd>
