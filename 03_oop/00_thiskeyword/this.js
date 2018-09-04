@@ -76,13 +76,22 @@ Add other properties
 
 /*
 Birthday property instead of age. When we instantiate an object, we'll pass in a date of birth (dob), it'll be passed in as a string, a date with ```Date()``` and pass in the dob string. Notice that the Date() object, which is a core object of JavaScript also has a constructor, we're calling ```new``` Date().
+
+What we're gonna do is create a ```method``` on this constructor. Again, a ```method``` is a function that's inside of an object. Our method is going to calculate the age from the birthday by subtract ```Date.now()``` from ```dob``` with ```this.birthday.getTime()```.
+
+Then, create another variable ```ageDate``` to create a date from that ```difference``` value. Next, return ```ageDate``` with ```getUTCFullYear``` which gives us the year and the specified date according to the universal time. From there, subtract 1970. Wrap the return statement in ```Math.abs``` for absolute value.
 */
 
 function Person(name, dob) {
   this.name = name;
   this.birthday = new Date(dob);
+  this.calculateAge = function() {
+    const difference = Date.now() - this.birthday.getTime();
+    const ageDate = new Date(difference);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
 }
 
 const amy = new Person('Amy', 'March 22, 1989');
 
-console.log(amy);
+console.log(amy.calculateAge());
