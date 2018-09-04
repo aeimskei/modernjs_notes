@@ -135,3 +135,20 @@ console.log(arr2);
 ```
 
 <kbd>![alt text](img/array.png "screenshot")</kbd>
+
+## Regular Expression
+
+If we want to create a regular expression, what you'd do is wrap it in two ```/ /```  forward slashes and then put the expression inside. In this case, put a backslash ```\w``` which represents a word character and then a ```+``` 
+
+* ```\w+``` this expression means we're looking for a word character that occurs oen or more time.
+* With ```RegEx()``` you need to use escape characters like ```\\w+\``` to get teh same as ```/\w+/```
+
+```
+const regex1 = /\w+/;
+const regex2 = new RegExp('\\w+');
+
+console.log(regex1);  // logs /\w+/
+console.log(regex2);  // logs /w+/
+```
+
+<kbd>![alt text](img/regex.png "screenshot")</kbd>
