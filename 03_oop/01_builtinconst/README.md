@@ -91,3 +91,20 @@ console.log(typeof bool2);
 ```
 
 <kbd>![alt text](img/boolean.png "screenshot")</kbd>
+
+## Function
+
+With Function object, looks weird, but it works.
+
+```
+const getSum1 = function(num1, num2) {
+  return num1 + num2;
+}
+
+const getSum2 = new Function('num1', 'num2', 'return num1 + num2');
+
+console.log(getSum1(2, 2));
+console.log(getSum2(2, 2));
+```
+
+<kbd>![alt text](img/function.png "screenshot")</kbd>

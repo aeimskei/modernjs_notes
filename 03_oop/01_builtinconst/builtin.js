@@ -56,11 +56,24 @@
 // Boolean
 // ====================================
 
-const bool1 = true;
-const bool2 = new Boolean(true);
+// const bool1 = true;
+// const bool2 = new Boolean(true);
 
-console.log(bool1);
-console.log(bool2);
+// console.log(bool1);
+// console.log(bool2);
 
-console.log(typeof bool1);
-console.log(typeof bool2);
+// console.log(typeof bool1);
+// console.log(typeof bool2);
+
+// ====================================
+// Function
+// ====================================
+
+const getSum1 = function(num1, num2) {
+  return num1 + num2;
+}
+
+const getSum2 = new Function('num1', 'num2', 'return num1 + num2');
+
+console.log(getSum1(2, 2));
+console.log(getSum2(2, 2));
