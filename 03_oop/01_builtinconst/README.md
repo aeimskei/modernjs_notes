@@ -60,3 +60,20 @@ This is only the case for ```===```, but with ```==``` it may pass as a match in
 
 ## Number
 
+Primitive number vs. Number object:
+
+```
+const num1 = 5;
+const num2 = new Number(5);
+
+console.log(num1);
+console.log(num2);
+
+console.log(typeof num1);
+console.log(typeof num2);
+```
+
+<kbd>![alt text](img/number.png "screenshot")</kbd>
+
+## Boolean
+

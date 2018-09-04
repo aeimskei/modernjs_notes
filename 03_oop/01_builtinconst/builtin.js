@@ -27,15 +27,27 @@
 // Matching types issue
 // ====================================
 
-// sets primitive value to a variable
-const name1 = 'Joe';
+// // sets primitive value to a variable
+// const name1 = 'Joe';
 
-// can create string as an object
-const name2 = new String('James');
-// add property
-name2.surname = 'Kennedy';
+// // can create string as an object
+// const name2 = new String('James');
+// // add property
+// name2.surname = 'Kennedy';
 
-// console.log(typeof name1);
-// console.log(typeof name2);
+// // console.log(typeof name1);
+// // console.log(typeof name2);
 
 
+// ====================================
+// Number
+// ====================================
+
+const num1 = 5;
+const num2 = new Number(5);
+
+console.log(num1);
+console.log(num2);
+
+console.log(typeof num1);
+console.log(typeof num2);
