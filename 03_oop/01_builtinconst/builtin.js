@@ -82,11 +82,21 @@
 // Object
 // ====================================
 
-const james1 = {
-  name: 'James'
-}
+// const james1 = {
+//   name: 'James'
+// }
 
-const james2 = new Object({name: 'James'});
+// const james2 = new Object({name: 'James'});
 
-console.log(james1);
-console.log(james2);
+// console.log(james1);
+// console.log(james2);
+
+// ====================================
+// Array
+// ====================================
+
+const arr1 = [1, 2, 3, 4];
+const arr2 = new Array(1, 2, 3, 4);
+
+console.log(arr1);
+console.log(arr2);

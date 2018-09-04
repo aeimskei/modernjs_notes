@@ -123,3 +123,15 @@ console.log(james2);
 ```
 
 <kbd>![alt text](img/object.png "screenshot")</kbd>
+
+## Array
+
+```
+const arr1 = [1, 2, 3, 4];
+const arr2 = new Array(1, 2, 3, 4);
+
+console.log(arr1);
+console.log(arr2);
+```
+
+<kbd>![alt text](img/array.png "screenshot")</kbd>
