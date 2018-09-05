@@ -93,4 +93,53 @@ If you click on the proto pseudo selector, ```__proto__```, you'll see we have `
 
  Next, we want this to actually return ```Customer```, so one more line of code is needed.
 
- 
+ ```
+ // Customer Constructor Object
+function Customer(firstName, lastName, phone, membership) {
+  Person.call(this, firstName, lastName);
+
+  this.phone = phone;
+  this.membership = membership;
+}
+
+// Inherit the Person protoype methods
+Customer.prototype = Object.create(Person.prototype);
+
+// Make customer.prototype return Customer()
+Customer.prototype.constructor = Customer;
+
+// Instantiate or create a Customer
+const customer2 = new Customer('Joann', 'Thompson', '555-123-7879', 'standard')
+
+// console.log(customer1);
+console.log(customer2);
+console.log(customer2.greeting());
+```
+
+<kbd>![alt text](img/custproto.png "screenshot")</kbd>
+
+Now you can see in ```__proto__``` we're using the ```Customer``` constructor.
+
+## Overwrite Person prototype with new prototype
+
+Like if we want to create a separate ```greeting()``` for a customer, we should be able to do that.
+
+Do that by ```Customer.prototype.greeting()``` and set that to a function and return a message.
+
+```
+Customer.prototype.greeting = function() {
+  return `Hello there ${this.firstName} ${this.lastName}, welcome to our organization.`;
+}
+```
+
+<kbd>![alt text](img/callcustgreet.png "screenshot")</kbd>
+
+Now, if we were to call the Person greeting(),
+
+```
+console.log(person1.greeting());
+```
+
+that one will just be, ```Hello there John Smith```
+
+<kbd>![alt text](img/callpersgreet.png "screenshot")</kbd>
