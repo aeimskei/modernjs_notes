@@ -63,4 +63,34 @@ console.log(customer2.greeting());
 
 <kbd>![alt text](img/protometherror.png "screenshot")</kbd>
 
-Notice that there's an error when calling ```greeting()``` bc it's not yet ingeriting the Prototype. So, we need to addd a few lines of code for that to happen.
+Notice that there's an error when calling ```greeting()``` bc it's not yet ingeriting the Prototype. So, we need to add a few lines of code for that to happen, using ```Customer.prototype = Object.create(Person.prototype);```
+
+```
+// Customer Constructor Object
+function Customer(firstName, lastName, phone, membership) {
+  Person.call(this, firstName, lastName);
+
+  this.phone = phone;
+  this.membership = membership;
+}
+
+// Inherit the Person protoype methods
+Customer.prototype = Object.create(Person.prototype);
+
+// Instantiate or create a Customer
+const customer2 = new Customer('Joann', 'Thompson', '555-123-7879', 'standard')
+
+// console.log(customer1);
+console.log(customer2);
+console.log(customer2.greeting());
+```
+
+Now, 'Hello there Joann Thompson' works, the ```greeting()``` prototype method works. Joann Thompson is a Customer, we set her up as a Customer not Person, and even though ```greeting()``` is part of the ```Person``` constructor as its prototype, we were able to use it by adding ```Object.create(Person.prototype)```
+
+If you click on the proto pseudo selector, ```__proto__```, you'll see we have ```Person```.
+
+<kbd>![alt text](img/inheritpers.png "screenshot")</kbd>
+
+ Next, we want this to actually return ```Customer```, so one more line of code is needed.
+
+ 
