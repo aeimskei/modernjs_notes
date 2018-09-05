@@ -143,3 +143,5 @@ console.log(person1.greeting());
 that one will just be, ```Hello there John Smith```
 
 <kbd>![alt text](img/callpersgreet.png "screenshot")</kbd>
+
+As you see, Person greeting will stay the same. With that said, we can't technically overwrite it, but any prototype we add through Person, will be accessbile through Customer. That's how we do Inheritance.
