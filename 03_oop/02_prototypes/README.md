@@ -99,5 +99,22 @@ console.log(james.calculateAge());
 
 <kbd>![alt text](img/calcage.png "screenshot")</kbd>
 
-## Another Prototype Method
+## Create Another Prototype Method
 
+```
+// Get Full Name
+Person.prototype.getFullName = function() {
+  const fullName = this.firstName + ' ' + this.lastName;
+  return fullName;
+}
+
+console.log(bethany);
+console.log(bethany.calculateAge());
+console.log(bethany.getFullName());
+```
+
+<kbd>![alt text](img/fullname.png "screenshot")</kbd>
+
+If we look inside the ```__proto__``` object, we now have ```calculateAge``` and ```getFullName```. So, we're not flooding our Person Constructor with functions inside it. Instead, we're putting them inside the Prototype.
+
+<kbd>![alt text](img/fullnameproto.png "screenshot")</kbd>

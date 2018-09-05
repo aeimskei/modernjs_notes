@@ -24,5 +24,12 @@ Person.prototype.calculateAge = function() {
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
+// Get Full Name
+Person.prototype.getFullName = function() {
+  const fullName = this.firstName + ' ' + this.lastName;
+  return fullName;
+}
+
 console.log(bethany);
-console.log(james.calculateAge());
+console.log(bethany.calculateAge());
+console.log(bethany.getFullName());
