@@ -68,6 +68,24 @@ console.log(nancy.greeting());
 
 <kbd>![alt text](img/nancmarried.png "screenshot")</kbd>
 
-
-
 ## Create Object with Constructors
+
+Here, we'll use different syntax of creating Object, but we'll add the second parameter as an object and each property is gonna be an object for each as well. Each of those property as objects will have ```value:``` as their key and then the actual value as the value like ```Rowan```.
+
+```
+const rowan = Object.create(personPrototypes, {
+  firstName: {value: 'Rowan'},
+  lastName: {value: 'Hallet'},
+  age: {value: 35}
+});
+
+console.log(rowan);
+```
+
+<kbd>![alt text](img/rowan.png "screenshot")</kbd>
+
+In the ```__proto__``` you can see that it also has ```greeting()```, let's call it:
+
+<kbd>![alt text](img/rowgreet.png "screenshot")</kbd>
+
+So, this is just an alternative way to create Objects using ```Object.create()``` method.
