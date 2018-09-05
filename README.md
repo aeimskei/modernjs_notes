@@ -35,3 +35,13 @@ Feel free to fork or star this repo and learn from it. This starts off very begi
 * Keyboard & Input Events
 * Event Bubbling & Delegation
 * Local Storage & Session Storage
+
+## Object Oriented JavaScript - ES5 & ES6
+
+* Object Contructors and the ```'this'``` keyword
+* JavaScript's Built-in Constructors
+* Prototypes
+* Prototypal Inheritance
+* Object.create
+* ES6 Classes
+* Sub Classes
