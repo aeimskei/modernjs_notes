@@ -118,3 +118,24 @@ console.log(bethany.getFullName());
 If we look inside the ```__proto__``` object, we now have ```calculateAge``` and ```getFullName```. So, we're not flooding our Person Constructor with functions inside it. Instead, we're putting them inside the Prototype.
 
 <kbd>![alt text](img/fullnameproto.png "screenshot")</kbd>
+
+## Manipulate Data with Prototype Method
+
+Up to this point, our Prototype Method is basically getting data for us, and it can also manipulate the data for us. Now, let's create a another Prototype Method for ```getsMarried```.
+
+```
+// Gets Married
+Person.prototype.getsMarried = function(newLastName) {
+  return this.lastName = newLastName;
+}
+
+console.log(bethany.getFullName());
+console.log(bethany.getsMarried('Marshall'));
+console.log(bethany.getFullName());
+```
+
+<kbd>![alt text](img/getsmarried.png "screenshot")</kbd>
+
+If you look in the Prototype, you'll see all three Prototype Methods there.
+
+<kbd>![alt text](img/allproto.png "screenshot")</kbd>
