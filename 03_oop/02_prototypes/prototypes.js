@@ -35,8 +35,10 @@ Person.prototype.getsMarried = function(newLastName) {
   return this.lastName = newLastName;
 }
 
-console.log(bethany);
-console.log(bethany.calculateAge());
-console.log(bethany.getFullName());
-console.log(bethany.getsMarried('Marshall'));
-console.log(bethany.getFullName());
+// console.log(bethany);
+// console.log(bethany.calculateAge());
+// console.log(bethany.getFullName());
+// console.log(bethany.getsMarried('Marshall'));
+// console.log(bethany.getFullName());
+
+// console.log(bethany.hasOwnProperty('firstName'));

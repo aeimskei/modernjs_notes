@@ -139,3 +139,25 @@ console.log(bethany.getFullName());
 If you look in the Prototype, you'll see all three Prototype Methods there.
 
 <kbd>![alt text](img/allproto.png "screenshot")</kbd>
+
+We also have access to Object.prototype.
+
+<kbd>![alt text](img/persobjtype.png "screenshot")</kbd>
+
+Let's look at ```hasOwnProperty``` what that will do is look at your contructor object and check for the property that it has, like:
+
+```
+this.firstName = firstName;
+this.lastName = lastName;
+this.birthday = new Date(dob);
+```
+
+There's no special syntax we need to use to access these methods, simply say:
+
+<kbd>![alt text](img/hasOwnProperty.png "screenshot")</kbd>
+
+if you put in a property that's not there, like ```getFullName()``` it's not part of the actual constructor object of Person:
+
+<kbd>![alt text](img/objprop.png "screenshot")</kbd>
+
+it'll log out as ```false``` bc ```getFullName``` is in a prototype, it's part of its own property.
