@@ -157,3 +157,25 @@ console.log(rowan.calculateAge());
 
 
 That's the core basic of how ```classes``` work in ES6. Very similar to other languages, maybe a bit easier. 
+
+## Static Methods
+
+It is used without instantiating an object. Again, ```instantiate``` means when we create an object from a ```class```.
+
+So let's say you want a method that added two numbers together. That's something that you don't need specific properties passed in, it's just a stand-alone method. To do that, just use the keyword ```static```.
+
+```
+static addNumbers(x, y) {
+  return x + y;
+}
+```
+
+Remember, static method is not part of the instance of creating a Person object like ```rowan```. In order to use this, we have to use the actual class name like ```Person```.
+
+```
+console.log(Person.addNumbers(1, 3));   // Logs 4
+```
+
+Using static method doesn't make much sense, but if you're not using this.something in your methods, and you just need a stand-alone method, that you want in your class, that's a good case for a static method.
+
+<kbd>![alt text](img/staticmeth.png "screenshot")</kbd>
