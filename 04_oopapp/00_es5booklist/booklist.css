@@ -1,0 +1,31 @@
+body {
+  background: #F5F5F5;
+}
+
+h1 {
+  color: #585858;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+label, th {
+  color: #585858;
+}
+
+/************************** 
+For Alert 
+***************************/
+
+.success, error {
+  color: #ffffff;
+  padding: 5px;
+  margin: 5px 0 15px 0;
+}
+
+.success {
+  background: green;
+}
+
+.error {
+  background: red;
+}
