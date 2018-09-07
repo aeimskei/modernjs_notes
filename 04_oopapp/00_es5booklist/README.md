@@ -98,7 +98,7 @@ Handles creating the actual book object.
 ```
 function Book(title, author, isbn) {
   this.title = title;
-  this.author = authro;
+  this.author = author;
   this.isbn = isbn;
 }
 ```
@@ -115,4 +115,56 @@ function UI() {}
 **Event Listeners**
 
 * get the ```form``` id
-* 
+* get Form input values
+
+```
+// Set Variables
+const form = document.querySelector('#book-form');
+let title = document.querySelector('#title'),
+    author = document.querySelector('#author'),
+    isbn = document.querySelector('#isbn'),
+    bookList = document.querySelector('#book-list')
+
+// Assign Event Listeners
+form.addEventListener('submit', submitBook)
+
+// Helper Function for Submit
+function submitBook(e) {
+  // Get Form values
+  title = title.value;
+  author = author.value;
+  isbn = isbn.value;
+  // console.log(title, author, isbn); // test log
+
+  e.preventDefault();
+}
+```
+
+<kbd>![alt text](img/getinputvalues.png "screenshot")</kbd>
+
+**When ```submit``` Instatiate Book Constructor**
+
+Once we submit these values, we want to Instantiate the Book Constructor, the Book object.
+
+```
+function submitBook(e) {
+  // Get Form values
+  title = title.value;
+  author = author.value;
+  isbn = isbn.value;
+  // console.log(title, author, isbn); // test log
+
+  // Instatiate Book Constructor/object when submit value
+  const book = new Book(title, author, isbn);
+  console.log(book); // test log
+
+  e.preventDefault();
+}
+```
+
+<kbd>![alt text](img/constructbook.png "screenshot")</kbd>
+
+**Dynamically Add Book to Table Below**
+
+
+
