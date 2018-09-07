@@ -13,6 +13,11 @@ function Book(title, author, isbn) {
 // ==========================================
 function UI() {}
 
+// addBookToList Prototype Method
+UI.prototype.addBookToList = function(book) {
+  // console.log(book); // test log
+}
+
 
 // ==========================================
 // Set Variables Grab from UI
@@ -41,7 +46,17 @@ function submitBook(e) {
   // Instatiate Book Constructor/object when submit value
   // ====================================================
   const book = new Book(title, author, isbn);
-  console.log(book); // test log
+  // console.log(book); // test log
+
+  // ====================================================
+  // Instatiate UI Constructor/object to add to Book List
+  // ====================================================
+  const ui = new UI();
+  // console.log(ui); // test log
+
+  // Add new Book to List
+  ui.addBookToList(book);
+
 
   e.preventDefault();
 }

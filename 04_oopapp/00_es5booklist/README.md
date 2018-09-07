@@ -164,7 +164,52 @@ function submitBook(e) {
 
 <kbd>![alt text](img/constructbook.png "screenshot")</kbd>
 
-**Dynamically Add Book to Table Below**
+**Dynamically Add Book to Table Below, UI Constructor**
+
+Next, we need to instaiate a UI object from our UI Constructor in order to add to the table section.
+
+We need to create a prototype method to ```addBookToList()``` under the UI constructor function. This function is going to take in that ```book``` object. When testing with ```console.log``` you'll see that it's logging the ```Book```, so it's calling the prototype.
+
+```
+UI.prototype.addBookToList = function(book) {
+  console.log(book); // test log
+}
+```
+
+Instantiate a UI object ```const UI = new UI(book);```. Then ```ui.addBookToList(book);``` and then we need to pass in that ```book``` object that was instantiate on submit.
+
+When you test ```console.log(ui)```, when you look in the prototype, you'll see it has ```addBookToList()```, so it's now part of the UI object's prototype.
+
+Test the ```ui``` log:
+
+```
+// Helper Function for Submit
+function submitBook(e) {
+  // Get Form values
+  title = title.value;
+  author = author.value;
+  isbn = isbn.value;
+  // console.log(title, author, isbn); // test log
+
+  // ====================================================
+  // Instatiate Book Constructor/object when submit value
+  // ====================================================
+  const book = new Book(title, author, isbn);
+  // console.log(book); // test log
+
+  // ====================================================
+  // Instatiate UI Constructor/object to add to Book List
+  // ====================================================
+  const ui = new UI();
+  console.log(ui); // test log
+
+  // Add new Book to List
+  ui.addBookToList(book);
 
 
+  e.preventDefault();
+}
+```
 
+
+<kbd>![alt text](img/uiconstructor.png "screenshot")</kbd>
