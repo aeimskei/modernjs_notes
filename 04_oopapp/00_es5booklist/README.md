@@ -86,3 +86,33 @@ Add classes for alerts in CSS file:
   background: red;
 }
 ```
+
+## JS File Time! Use ES5 Object Oriented Programming~
+
+* Constructors
+* Prototype Methods
+
+**Book Constructor**
+Handles creating the actual book object.
+
+```
+function Book(title, author, isbn) {
+  this.title = title;
+  this.author = authro;
+  this.isbn = isbn;
+}
+```
+
+**UI Constructor**
+Will be a set of prototype methods to do things like add book to the list, delete book, show alert - things that have to do with the UI.
+
+It's gonna be very simple bc we won't be passing anything in. It'll just be an empty function. Everything else is going to go inside the prototype.
+
+```
+function UI() {}
+```
+
+**Event Listeners**
+
+* get the ```form``` id
+* 
