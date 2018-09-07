@@ -143,7 +143,7 @@ function submitBook(e) {
 
 <kbd>![alt text](img/getinputvalues.png "screenshot")</kbd>
 
-**When ```submit``` Instatiate Book Constructor**
+## When ```submit``` Instatiate Book Constructor**
 
 Once we submit these values, we want to Instantiate the Book Constructor, the Book object.
 
@@ -170,7 +170,7 @@ function submitBook(e) {
 
 <kbd>![alt text](img/constructbook.png "screenshot")</kbd>
 
-**Dynamically Add Book to Table Below, UI Constructor**
+## Dynamically Add Book to Table Below, UI Constructor**
 
 Next, we need to instaiate a UI object from our UI Constructor in order to add to the table section.
 
@@ -250,3 +250,33 @@ UI.prototype.addBookToList = function(book) {
 ```
 
 <kbd>![alt text](img/appendbook.png "screenshot")</kbd>
+
+Clear input fields after submitting, that'll be a part of the UI prototype as well. 
+
+```
+UI.prototype.clearFields = function() {
+  title.value = '';
+  author.value = '';
+  isbn.value = '';
+}
+```
+
+Call it after we've added the book.
+
+```
+  const ui = new UI();
+  // console.log(ui); // test log
+
+  // Add new Book to List
+  ui.addBookToList(book);
+
+  // Clear fields
+  ui.clearFields();
+
+  e.preventDefault();
+```
+
+<kbd>![alt text](img/uiprotos.png "screenshot")</kbd>
+
+## Form Validation and Show Alert
+

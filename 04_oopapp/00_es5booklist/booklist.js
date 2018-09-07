@@ -81,11 +81,16 @@ function submitBook(e) {
   const ui = new UI();
   // console.log(ui); // test log
 
-  // Add new Book to List
-  ui.addBookToList(book);
+  // Form validation
+  if (title === '' || author === '' || isbn === '') {
+    // console.log('Do not leave empty input fields'); // test log
+  } else {
+    // UI Prototype Method to addBookToList
+    ui.addBookToList(book);
 
-  // Clear fields
-  ui.clearFields();
+    // UI Prototype Method to clearFields
+    ui.clearFields();
+  }
 
   e.preventDefault();
 }
