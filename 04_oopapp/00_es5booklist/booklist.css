@@ -23,11 +23,13 @@ For Alert
 }
 
 .success {
-  background: rgba(0, 255, 0, 0.8);
+  background: rgba(0, 128, 0, 0.8);
   border-radius: 4px;
+  text-align: center;
 }
 
 .error {
   background: rgba(255, 0, 0, 0.8);
   border-radius: 4px;
+  text-align: center;
 }

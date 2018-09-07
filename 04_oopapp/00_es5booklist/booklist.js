@@ -62,7 +62,7 @@ UI.prototype.showAlert = function(message, className) {
   // dissappear after 3 seconds, grab class of alert and remove
   setTimeout(function() {
     document.querySelector('.alert').remove();
-  }, 3000);
+  }, 4000);
 }
 
 // ==========================================
@@ -114,6 +114,10 @@ function submitBook(e) {
   } else {
     // UI Prototype Method to addBookToList
     ui.addBookToList(book);
+
+    // Success alert, calling the success class in cSS
+    // // UI Prototype Method to showAlert
+    ui.showAlert('Book added! Have fun reading it.', 'success');
 
     // UI Prototype Method to clearFields
     ui.clearFields();
