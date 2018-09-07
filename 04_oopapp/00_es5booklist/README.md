@@ -120,16 +120,17 @@ function UI() {}
 ```
 // Set Variables
 const form = document.querySelector('#book-form');
-let title = document.querySelector('#title'),
-    author = document.querySelector('#author'),
-    isbn = document.querySelector('#isbn'),
-    bookList = document.querySelector('#book-list')
 
 // Assign Event Listeners
 form.addEventListener('submit', submitBook)
 
 // Helper Function for Submit
 function submitBook(e) {
+  // Set variables to grab #ids
+  let title = document.querySelector('#title'),
+      author = document.querySelector('#author'),
+      isbn = document.querySelector('#isbn')
+
   // Get Form values
   title = title.value;
   author = author.value;
@@ -148,6 +149,11 @@ Once we submit these values, we want to Instantiate the Book Constructor, the Bo
 
 ```
 function submitBook(e) {
+  // Set variables to grab #ids
+  let title = document.querySelector('#title'),
+      author = document.querySelector('#author'),
+      isbn = document.querySelector('#isbn')
+
   // Get Form values
   title = title.value;
   author = author.value;
@@ -185,6 +191,11 @@ Test the ```ui``` log:
 ```
 // Helper Function for Submit
 function submitBook(e) {
+  // Set variables to grab #ids
+  let title = document.querySelector('#title'),
+      author = document.querySelector('#author'),
+      isbn = document.querySelector('#isbn')
+
   // Get Form values
   title = title.value;
   author = author.value;
@@ -210,6 +221,32 @@ function submitBook(e) {
   e.preventDefault();
 }
 ```
-
-
 <kbd>![alt text](img/uiconstructor.png "screenshot")</kbd>
+
+Inside the ```UI.prototype.addBookToList = function(book){...}```, create a variable ```const list``` and set to the ```#book-list``` on HTML in the ```<tbody>``` tag. We're gonna build out the ```<tr>``` dynamically.
+
+```
+function UI() {}
+
+// addBookToList Prototype Method
+UI.prototype.addBookToList = function(book) {
+  // console.log(book); // test log book object
+
+  // create <tr> element, grab the variable bookList
+  const row = document.createElement('tr');
+  // console.log(row); // test log row
+
+  // insert columns, values from new book
+  row.innerHTML = `
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td>${book.isbn}</td>
+    <td><a href="#" class="delete"><i class="fa fa-remove"></i></a></td>
+  `;
+
+  // append row to the '#book-list' <tr>
+  bookList.appendChild(row);
+}
+```
+
+<kbd>![alt text](img/appendbook.png "screenshot")</kbd>

@@ -1,4 +1,9 @@
 // ==========================================
+// Set varible grab from UI
+// ==========================================
+const form = document.querySelector('#book-form');
+
+// ==========================================
 // Book Constructor
 // ==========================================
 function Book(title, author, isbn) {
@@ -7,27 +12,44 @@ function Book(title, author, isbn) {
   this.isbn = isbn;
 }
 
-
 // ==========================================
 // UI Constructor
 // ==========================================
 function UI() {}
 
+// ==========================================
 // addBookToList Prototype Method
+// ==========================================
 UI.prototype.addBookToList = function(book) {
-  // console.log(book); // test log
+  // console.log(book); // test log book object
+
+  // grab `#book-list` from UI
+  const bookList = document.querySelector('#book-list');
+
+  // create <tr> element, grab the variable bookList
+  const row = document.createElement('tr');
+  // console.log(row); // test log row
+
+  // insert columns, values from new book
+  row.innerHTML = `
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td>${book.isbn}</td>
+    <td><a href="#" class="delete"><i class="fa fa-remove"></i></a></td>
+  `;
+
+  // append row to the '#book-list' <tr>
+  bookList.appendChild(row);
 }
 
-
 // ==========================================
-// Set Variables Grab from UI
+// clearFields Prototype Method
 // ==========================================
-const form = document.querySelector('#book-form');
-let title = document.querySelector('#title'),
-    author = document.querySelector('#author'),
-    isbn = document.querySelector('#isbn'),
-    bookList = document.querySelector('#book-list')
-
+UI.prototype.clearFields = function() {
+  title.value = '';
+  author.value = '';
+  isbn.value = '';
+}
 
 // ==========================================   
 // Event Listner on 'submit'
@@ -36,6 +58,11 @@ form.addEventListener('submit', submitBook)
 
 // Helper Function for Submit
 function submitBook(e) {
+  // Set variables to grab #ids
+  let title = document.querySelector('#title'),
+      author = document.querySelector('#author'),
+      isbn = document.querySelector('#isbn')
+
   // Get Form values
   title = title.value;
   author = author.value;
@@ -57,6 +84,8 @@ function submitBook(e) {
   // Add new Book to List
   ui.addBookToList(book);
 
+  // Clear fields
+  ui.clearFields();
 
   e.preventDefault();
 }
