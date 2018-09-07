@@ -16,16 +16,18 @@ label, th {
 For Alert 
 ***************************/
 
-.success, error {
+.success, .error {
   color: #ffffff;
   padding: 5px;
   margin: 5px 0 15px 0;
 }
 
 .success {
-  background: green;
+  background: rgba(0, 255, 0, 0.8);
+  border-radius: 4px;
 }
 
 .error {
-  background: red;
+  background: rgba(255, 0, 0, 0.8);
+  border-radius: 4px;
 }

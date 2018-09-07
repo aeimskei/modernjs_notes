@@ -280,3 +280,4 @@ Call it after we've added the book.
 
 ## Form Validation and Show Alert
 
+We need to create another UI Prototype Method called ```showAlert```. Inside it, create the element. 

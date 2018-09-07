@@ -43,7 +43,30 @@ UI.prototype.addBookToList = function(book) {
 }
 
 // ==========================================
-// clearFields Prototype Method
+// showAlert UI Prototype Method
+// ==========================================
+UI.prototype.showAlert = function(message, className) {
+  // create <div>
+  const div = document.createElement('div');
+  // add classes
+  div.className = `alert ${className}`;
+  // add text
+  div.appendChild(document.createTextNode(message));
+  // grab parent
+  const container = document.querySelector('.container');
+  // grab form bc we want the alert before the form
+  const formTag = document.querySelector('#book-form');
+
+  // insert to DOM
+  container.insertBefore(div, formTag);
+  // dissappear after 3 seconds, grab class of alert and remove
+  setTimeout(function() {
+    document.querySelector('.alert').remove();
+  }, 3000);
+}
+
+// ==========================================
+// clearFields UI Prototype Method
 // ==========================================
 UI.prototype.clearFields = function() {
   title.value = '';
@@ -84,6 +107,10 @@ function submitBook(e) {
   // Form validation
   if (title === '' || author === '' || isbn === '') {
     // console.log('Do not leave empty input fields'); // test log
+
+    // Error alert, calling the error class in CSS
+    // UI Prototype Method to showAlert
+    ui.showAlert('Please fill in all input fields.', 'error');
   } else {
     // UI Prototype Method to addBookToList
     ui.addBookToList(book);
