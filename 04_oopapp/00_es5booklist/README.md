@@ -281,3 +281,106 @@ Call it after we've added the book.
 ## Form Validation and Show Alert
 
 We need to create another UI Prototype Method called ```showAlert```. Inside it, create the element. 
+
+**```showAlert``` UI Prototype Method**
+
+```
+UI.prototype.showAlert = function(message, className) {
+  // create <div>
+  const div = document.createElement('div');
+  // add classes
+  div.className = `alert ${className}`;
+  // add text
+  div.appendChild(document.createTextNode(message));
+  // grab parent
+  const container = document.querySelector('.container');
+  // grab form bc we want the alert before the form
+  const formTag = document.querySelector('#book-form');
+
+  // insert to DOM
+  container.insertBefore(div, formTag);
+  // dissappear after 3 seconds, grab class of alert and remove
+  setTimeout(function() {
+    document.querySelector('.alert').remove();
+  }, 4000);
+}
+```
+
+**Error Alert**
+
+```
+const ui = new UI();
+// console.log(ui); // test log
+
+// Form validation
+if (title === '' || author === '' || isbn === '') {
+  // console.log('Do not leave empty input fields'); // test log
+
+  // Error alert, calling the error class in CSS
+  // UI Prototype Method to showAlert
+  ui.showAlert('Please fill in all input fields.', 'error');
+
+  ...
+```
+
+<kbd>![alt text](img/error.png "screenshot")</kbd>
+
+**Success Alert**
+
+```
+...
+  } else {
+    // UI Prototype Method to addBookToList
+    ui.addBookToList(book);
+
+    // Success alert, calling the success class in cSS
+    // // UI Prototype Method to showAlert
+    ui.showAlert('Book added! Have fun reading it.', 'success');
+```
+
+<kbd>![alt text](img/success.png "screenshot")</kbd>
+
+## Delete Book from List
+
+Remember event delegation, if we have something that's gonna show up more than once with the same class, or something that appears dynamically added, we're gonna have to use event delegation.
+
+* Create event listener for parent, ```#book-list```
+* Create another UI Prototype Method
+
+In deleteBook UI Prototype Method, we're gonna pass in ```target``` and we need to make sure we go up to the ```parentElement``` to target the ```<tr>```, this is basic DOM traversing, and then we want to remove it from the DOM.
+
+```
+// get the parent
+const parent = document.querySelector('#book-list');
+
+// add event listener
+parent.addEventListener('click', function(e) {
+  // console.log('test delete'); // test log, logs a lot!
+
+  // instatiate the UI
+  const ui = new UI();
+
+  // UI Prototype Method to deleteBook
+  ui.deleteBook(e.target);
+
+  // show an alert message
+  ui.showAlert('Book removed!', 'remove');
+
+  e.preventDefault();
+});
+```
+
+UI Prototype Method to deleteBook
+```
+UI.prototype.deleteBook = function(target) {
+  if (target.parentElement.classList.contains('delete')) {
+    target.parentElement.parentElement.parentElement.remove();
+  }
+}
+```
+
+<kbd>![alt text](img/deletebook.png "screenshot")</kbd>
+
+When you ```console.log(ui);``` after instantiating, you'll see that all the Prototype Methods for UI is listed:
+
+<kbd>![alt text](img/uiprotometh.png "screenshot")</kbd>

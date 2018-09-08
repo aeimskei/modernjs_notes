@@ -62,7 +62,17 @@ UI.prototype.showAlert = function(message, className) {
   // dissappear after 3 seconds, grab class of alert and remove
   setTimeout(function() {
     document.querySelector('.alert').remove();
-  }, 4000);
+  }, 3000);
+}
+
+// ==========================================
+// deleteBook UI Prototype Method
+// ==========================================
+
+UI.prototype.deleteBook = function(target) {
+  if (target.parentElement.classList.contains('delete')) {
+    target.parentElement.parentElement.parentElement.remove();
+  }
 }
 
 // ==========================================
@@ -125,3 +135,25 @@ function submitBook(e) {
 
   e.preventDefault();
 }
+
+// ==========================================   
+// Event Listner for 'delete'
+// ==========================================
+// get the parent
+const parent = document.querySelector('#book-list');
+
+// add event listener
+parent.addEventListener('click', function(e) {
+  // console.log('test delete'); // test log, logs a lot!
+
+  // instatiate the UI
+  const ui = new UI();
+
+  // UI Prototype Method to deleteBook
+  ui.deleteBook(e.target);
+
+  // show an alert message
+  ui.showAlert('Book removed!', 'remove');
+
+  e.preventDefault();
+});
