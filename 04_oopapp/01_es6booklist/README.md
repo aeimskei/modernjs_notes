@@ -171,3 +171,42 @@ document.addEventListener('DOMContentLoaded', Store.displayBooks);
 ```
 
 <kbd>![alt text](img/displayls.png "screenshot")</kbd>
+
+**Remove Book class method**
+
+We'll use the ISBN bc we need something unique in order to remove properly.
+
+Below ``` ui.deleteBook(e.target);``` in form
+
+```
+// UI Prototype Method to deleteBook
+ui.deleteBook(e.target);
+
+// Remove from Local Storage, need ibsn #
+// take the e.target, which is the X icon
+// get parentElement
+Store.removeBook(e.target.parentElement.parentElement.previousElementSibling.textContent);
+```
+
+As Class Method, loop through and see if the ```book.isbn``` is equal to the ```isbn``` that's being passed in the callback function of the forEach(), then we want to delete by grabbing the ```books``` array and ```splice()``` out the ```index``` and only ```1```.
+
+Then after the ```forEach()``` below it, we just have to set Local Storage again.
+
+```
+static removeBook(isbn) {
+  // console.log(isbn); // test removal
+
+  const books = Store.getBooks();
+
+  // loop/iterate through
+  books.forEach(function(book, index) {
+    if (book.isbn === isbn) {
+      books.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('books', JSON.stringify(books));
+}
+```
+
+That's the wrap, we now have full functionality with Local Storage, so it's not just a UI application.

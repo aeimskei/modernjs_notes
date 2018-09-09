@@ -105,8 +105,19 @@ class Store {
 
   }
 
-  static removeBook() {
+  static removeBook(isbn) {
+    // console.log(isbn); // test removal
 
+    const books = Store.getBooks();
+
+    // loop/iterate through
+    books.forEach(function(book, index) {
+      if (book.isbn === isbn) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
   }
 }
 
@@ -186,6 +197,11 @@ parent.addEventListener('click', function(e) {
 
   // UI Prototype Method to deleteBook
   ui.deleteBook(e.target);
+
+  // Remove from Local Storage, need ibsn #
+  // take the e.target, which is the X icon
+  // get parentElement
+  Store.removeBook(e.target.parentElement.parentElement.previousElementSibling.textContent);
 
   // show an alert message
   ui.showAlert('Book removed!', 'remove');
