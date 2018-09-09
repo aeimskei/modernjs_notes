@@ -21,20 +21,50 @@ class Book {
 **UI Class**
 ```
 class UI {
-  addBookToList() {
-
+  addBookToList(book) {
+    const list = document.querySelector('#book-list');
+    // create <tr> element
+    const row = document.createElement('tr');
+    // insert columns
+    row.innerHTML = `
+      <td>${book.title}</td>
+      <td>${book.author}</td>
+      <td>${book.isbn}</td>
+      <td><a href="#" class="delete"><i class="fa fa-remove"></i></a></td>
+    `;
+    // dyanmically add row to list
+    list.appendChild(row);
   }
 
-  showAlert() {
-
+  showAlert(message) {
+    // create <div>
+    const div = document.createElement('div');
+    // add class to that div
+    div.className = `alert ${className}`;
+    // add text inside that alert <div>
+    div.appendChild(document.createTextNode(message));
+    // grab parent
+    const container = document.querySelector('.container');
+    // grab form
+    const form = document.querySelector('#book-form');
+    // insert alert location
+    container.insertBefore(div, form);
+    // set timeout
+    setTimeout(function() {
+      document.querySelector('.alert').remove();
+    }, 3000);
   }
 
-  deleteBook() {
-
+  deleteBook(target) {
+    if (target.parentElement.classList.contains('delete')) {
+      target.parentElement.parentElement.parentElement.remove();
+    }
   }
 
   clearFields() {
-    
+    title.value = '';
+    author.value = '';
+    isbn.value = '';
   }
 }
 ```
