@@ -61,6 +61,61 @@ class UI {
 }
 
 // ==========================================   
+// Store Class - for Local Storage
+// ==========================================
+
+class Store {
+  static getBooks() {
+    // initialize a local variable
+    let books;
+    // check local storage
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      // use JSON.parse bc need it to be a JS object
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+
+    return books;
+  }
+
+  static displayBooks() {
+    const books = Store.getBooks();
+
+    // loop/iterate through books
+    books.forEach(function(book) {
+      // instantiate UI class
+      const ui = new UI();
+
+      // add book to UI with addBookToList and pass in book
+      ui.addBookToList(book);
+    });
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+
+    // push on to 'books'
+    books.push(book);
+
+    // set Local Storage again with that new book, as 'books'
+    // also set the books array, but run it through JSON.stringify
+    // in order to store it in Local Storage
+    localStorage.setItem('books', JSON.stringify(books));
+
+  }
+
+  static removeBook() {
+
+  }
+}
+
+// ==========================================   
+// DOM Load Event
+// ==========================================
+document.addEventListener('DOMContentLoaded', Store.displayBooks);
+
+// ==========================================   
 // Event Listner on 'submit'
 // ==========================================
 const form = document.querySelector('#book-form');
@@ -101,6 +156,9 @@ function submitBook(e) {
   } else {
     // UI Prototype Method to addBookToList
     ui.addBookToList(book);
+
+    // Add to Local Storage
+    Store.addBook(book);
 
     // Success alert, calling the success class in cSS
     // // UI Prototype Method to showAlert
