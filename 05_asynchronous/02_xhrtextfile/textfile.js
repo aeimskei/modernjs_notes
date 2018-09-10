@@ -22,7 +22,7 @@ function loadData() {
 
   // Optional - Used for spinners/loaders
   xhr.onprogress = function() {
-    console.log('readyState: ', xhr.readyState);
+    // console.log('readyState: ', xhr.readyState);
   }
 
   // Call and do whatever we want to do with the data we're getting
@@ -32,7 +32,20 @@ function loadData() {
     // check to see if status is equal to 200, means everything is OK
     // 'this' refer to the xhr object w/ property of status
     if (this.status === 200) {
-       console.log(this.responseText);
+      //  console.log(this.responseText);
+
+      // =====================================
+      // show the data from textfile on the UI
+      // =====================================
+
+      // grab #output from html
+      const output = document.querySelector('#output');
+
+      // display responseText from .txt file
+      output.innerHTML = `
+        <h1>${this.responseText}</h1>
+      `;
+      
     }
   }
 
@@ -49,6 +62,11 @@ function loadData() {
     }
   }
   */
+
+  // Error - in case something goes wrong
+  xhr.onerror = function() {
+    console.log('Request errorr...');
+  }
 
   // have to call send() to run
   xhr.send();

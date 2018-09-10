@@ -116,5 +116,37 @@ xhr.onprogress = function() {
 }
 ```
 
-You'll see that it's on readyState 3.
+You'll see that it's on readyState 3 for processing request.
 <kbd>![alt text](img/readystate3.png "screenshot")</kbd>
+
+## ```xhr.onerror``` Method
+
+Should use to indicate if there's an error.
+
+```
+xhr.onerror = function() {
+  console.log('Request errorr...');
+}
+```
+
+## Display data on UI
+
+```
+xhr.onload = function() {
+
+  if (this.status === 200) {
+
+    const output = document.querySelector('#output');
+
+    output.innerHTML = `
+      <h1>${this.responseText}</h1>
+    `; 
+  }
+}
+```
+
+<kbd>![alt text](img/display.png "screenshot")</kbd>
+
+There you go, notice there's no page refresh, it all happened behind the scenes.
+
+Next example is with JSON. Not too often you'll use .txt file. You'll mostly use JSON. How to fetch JSON and output into the browser.
