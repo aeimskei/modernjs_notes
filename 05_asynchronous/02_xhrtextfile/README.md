@@ -16,6 +16,12 @@ How to get data from a text file and bring it into your webpage or your applicat
 * Create a ```.txt``` file for plain data
 * Create a ```.js``` file for DOM manipulation
 
+## XHR Property and Methods
+
+* ```xhr.open('type of request like GET', 'the file name', true for async);```
+* ```xhr.onload = function() {}``` - to check status and can test with log ```this.responseText``` to display text from file
+* ```xhr.send()``` is required to run
+
 ## Request Response Statuses:
 
 * 200: "OK"
@@ -62,3 +68,11 @@ When you go through this process, there's a couple of different, ```readyState V
 * 4: request finished and response is ready
 
 At this point in our example, when ```xhr.onload``` loads, we're already at step four of readyState values, which is what we want. ```.onload``` is fairly new, before that, it had to be written out as ```xhr.onreadystatechange``` and had to check to make sure if at state 4.
+
+```
+xhr.onreadystatechange = function() {
+  if (this.status === 200 && this.readyState === 4) {
+    console.log(this.responseText);
+  }
+}
+```

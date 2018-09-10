@@ -11,18 +11,31 @@ function loadData() {
   // create XHR object and instantiate
   const xhr = new XMLHttpRequest();
 
-  // properties and methods
+  // ==============================
+  // XHR properties and methods
   // ==============================
 
   // Open - specifiy type of request and url/file, true = async
   xhr.open('GET', 'data.txt', true);
 
+  /*
   // Call and do whatever we want to do with the data we're getting
   xhr.onload = function() {
     // check to see if status is equal to 200, means everything is OK
     // 'this' refer to the xhr object w/ property of status
     if (this.status === 200) {
        console.log(this.responseText);
+    }
+  }
+  */
+
+  // ==============================
+  // readyState version, older
+  // ==============================
+
+  xhr.onreadystatechange = function() {
+    if (this.status === 200 && this.readyState === 4) {
+      console.log(this.responseText);
     }
   }
 
