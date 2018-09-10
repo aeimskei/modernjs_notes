@@ -76,3 +76,45 @@ xhr.onreadystatechange = function() {
   }
 }
 ```
+
+## ```xhr.readyState()```
+We can access the state where we're at by calling ```xhr.readyState()```.
+
+```
+// Open - specifiy type of request and url/file, true = async
+xhr.open('GET', 'data.txt', true);
+
+console.log('readyState: ', xhr.readyState);
+```
+
+At this point, the readyState Value is 1: server connection established
+
+<kbd>![alt text](img/readystate1.png "screenshot")</kbd>
+
+
+```
+xhr.onreadystatechange = function() {
+  console.log('readyState: ', xhr.readyState);
+
+  if (this.status === 200 && this.readyState === 4) {
+    console.log(this.responseText);
+  }
+}
+```
+
+At this point on ```onreadystatechange``` you'll see that it runs through the whole thing. That's why we have to check for readyState 4, to make sure it's at this point before we do anything. But then again, this is an older syntax. Use ```onload``` instead bc it takes you straight to readyState 4.
+
+<kbd>![alt text](img/onreadystatechange.png "screenshot")</kbd>
+
+## ```xhr.onprogress``` Method
+
+Optional method used for spinners/loaders, like something to display while something is loading or fetching the data. 
+
+```
+xhr.onprogress = function() {
+  console.log('readyState: ', xhr.readyState);
+}
+```
+
+You'll see that it's on readyState 3.
+<kbd>![alt text](img/readystate3.png "screenshot")</kbd>
