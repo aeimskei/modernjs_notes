@@ -115,3 +115,5 @@ Iterate each joke inside the initialized output we want to append to it using +=
 ```
 
 <kbd>![alt text](img/done.png "screenshot")</kbd>
+
+**Notes:** This is a simple API example. A lot of the other APIs require you to register and have a special token in order to use their API data, sometime even some kind of OAuth, which OAuth is a bit complicated, but worth looking into and learning. Sometimes they'll limit you on the API requests too. Unless you register and get an API key then you may get more access. It all varies on the API.
