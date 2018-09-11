@@ -77,3 +77,42 @@ It works the same way if you were fetching this from an external url, a public A
 ## customers.json 
 
 This example, we're gonna fetch an array of customers and display in UI.
+
+```
+function loadCustomers(e) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'customers.json', true);
+
+  xhr.onload = function() {
+    if (this.status === 200) {
+      // console.log('STATUS: ', this.responseText); // test log
+
+      const data1 = JSON.parse(this.responseText);
+      // console.log(data1); // test log result of parsed data
+
+      let output = '';
+
+      data1.forEach(function(data) {
+        // create an output template to the UI, use += to append
+        output += `
+          <ul class="alignment">
+            <li>ID: ${data.id}</li> 
+            <li>Name: ${data.name}</li> 
+            <li>Company: ${data.company}</li>
+            <li>Phone: ${data.phone}</li>
+          </ul>
+        `;
+      });
+
+    const customers = document.querySelector('#customers');
+
+    customers.innerHTML = output;
+    }
+  }
+
+  xhr.send();
+}
+```
+
+<kbd>![alt text](img/customers.png "screenshot")</kbd>

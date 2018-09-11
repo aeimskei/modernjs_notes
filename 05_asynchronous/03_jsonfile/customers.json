@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Nancy Powers",
+    "company": "99 Designs",
+    "phone": "554-326-0879"
+  },
+  {
+    "id": 2,
+    "name": "Sara Miller",
+    "company": "Design Brewery",
+    "phone": "123-326-0879"
+  },
+  {
+    "id": 3,
+    "name": "Miya Yah",
+    "company": "Retro Lab",
+    "phone": "143-143-6438"
+  }
+]
