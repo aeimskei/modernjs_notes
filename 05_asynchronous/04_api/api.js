@@ -2,11 +2,9 @@
 const button = document.querySelector('.get-jokes');
 
 // add event listener to button
-button.addEventListener('click', getJokess);
+button.addEventListener('click', getJokes);
 
-// helper function to load jokes
-
-function getJokess(e) {
+function getJokes(e) {
   // console.log('you clicked me!'); // test log
 
   // set grab number input value from html
@@ -24,7 +22,8 @@ function getJokess(e) {
   xhr.onload = function() {
     // check if it's a 200 status
     if (this.status === 200) {
-      const response = this.responseText;
+      // parse json
+      const response = JSON.parse(this.responseText);
       console.log(response); // test log
     }
   }

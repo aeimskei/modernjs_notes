@@ -26,3 +26,51 @@ http://api.icndb.com/jokes/random
 We'll use AJA to build this application that will get these jokes, return them, and then display them in the browser using DOM techniques.
 
 <kbd>![alt text](img/layout.png "screenshot")</kbd>
+
+**Initial test with json string coming in as response**
+
+```
+const button = document.querySelector('.get-jokes');
+
+button.addEventListener('click', getJokes);
+
+function getJokes(e) {
+  const number = document.querySelector('#number').value;
+  const xhr = new XMLHttpRequest();
+
+  xhr.open('GET', `http://api.icndb.com/jokes/random/${number}`, true);
+
+  xhr.onload = function() {
+    if (this.status === 200) {
+      // coming in as json string
+      const response = this.responseText;
+      console.log(response); // test log
+    }
+  }
+
+  xhr.send();
+
+  e.preventDefault();
+}
+```
+
+<kbd>![alt text](img/jsonstring.png "screenshot")</kbd>
+
+**Parsed json data version so we can actually use it**
+
+It's now in a different format, an actual Object. Everytime you submit the form, you get a different set of random jokes.
+
+```
+...
+  xhr.onload = function() {
+    if (this.status === 200) {
+      // coming in as json string
+      const response = JSON.parse(this.responseText);
+      console.log(response); // test log
+    }
+  }
+  ...
+
+```
+
+<kbd>![alt text](img/jsonparse.png "screenshot")</kbd>
