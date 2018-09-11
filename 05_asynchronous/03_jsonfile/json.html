@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Skeleton CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  <!-- Google Fonts CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="json.css">
+  <title>AJAX JSON File</title>
+</head>
+<body>
+  <div class="container">
+    <h4>Working JSON Data File</h4>
+
+    <button id="button1" class="button-primary">Get Customer</button>
+    <button id="button2" class="button-primary">Get Customer(s)</button>
+    
+    <div class="row">
+      <div class="six columns">
+        <h3 class="color-text">Customer</h3>
+        <div id="customer"></div>
+      </div>
+
+      <div class="six columns">
+        <h3 class="color-text">Customers</h3>
+        <div id="customers"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="json.js"></script>
+</body>
+</html>
