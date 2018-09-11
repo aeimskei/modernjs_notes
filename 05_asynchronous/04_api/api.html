@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Skeleton CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+  <!-- Google Fonts CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="api.css">
+  <title>AJAX External API - Chuck Norris Joke Generator</title>
+</head>
+<body>
+  <div class="container">
+    <img src="img/chucknorris.png" alt="Chuck Norris Image">
+    <h4 class="color-text">Chuck Norris Jokes Generator</h4>
+
+    <hr>
+
+    <!-- Form -->
+    <form>
+      <div class="u-full-width">
+        <label for="number">Number of Jokes</label>
+        <input type="number" id="number">
+      </div>
+      <div>
+        <button class="get-jokes button-primary u-full-width">Get Jokes</button>
+      </div>
+    </form>  
+
+    <!-- Render Joke Response -->
+    <ul class="jokes"></ul>
+
+  </div>
+
+  <script src="api.js"></script>
+</body>
+</html>
