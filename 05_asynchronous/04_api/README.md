@@ -74,3 +74,44 @@ It's now in a different format, an actual Object. Everytime you submit the form,
 ```
 
 <kbd>![alt text](img/jsonparse.png "screenshot")</kbd>
+
+## Dynamically Display data on UI
+
+**Iterate/loop through array**
+
+Iterate each joke inside the initialized output we want to append to it using +=.
+
+```response``` is an Object, so we can't use ```forEach()```, rather, we want to loop through the ```value``` bc it's an Array. The ```response``` starts at ```success```, which is an Object. Again, every API setup is different, so the way to use or access data will be different, so read the documentation.
+
+<kbd>![alt text](img/whereloop.png "screenshot")</kbd>
+
+```
+...
+  // set initialize output data
+  let output = '';
+  let values = response.value;
+
+  // make sure the response 'type' is 'success'
+  if (response.type === 'success') {
+    // loop through array from 'value'
+    values.forEach(function(value) {
+      output += `
+        <li>${value.joke}</li>
+        <hr>
+      `;
+    })
+
+  } else {
+    // set output to append with += template to display
+    output += `
+      <li>Error, something went wrong.</li>
+    `;
+  }
+
+  // insert dynamically to html
+  const display = document.querySelector('.jokes');
+  display.innerHTML = output;
+}
+```
+
+<kbd>![alt text](img/done.png "screenshot")</kbd>

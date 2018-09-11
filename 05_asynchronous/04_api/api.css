@@ -10,3 +10,11 @@
 img {
   width: 130px;
 }
+
+.alignment {
+  text-align: left;
+}
+
+li {
+  list-style-type: none;
+}

@@ -45,3 +45,19 @@ Feel free to fork or star this repo and learn from it. This starts off very begi
 * Object.create
 * ES6 Classes
 * Sub Classes
+
+## Asynchronous JavaScript, AJAX & Fetch API
+
+* What's Asynchronous Programming?
+* AJAX & XHR
+* XHR Object Methods & Working with Text File ```.txt```
+* AJAX JSON File ```.json``` single object and array of objects data
+* External API Data - Project Chuck Norris Jokes API
+* REST APIs & HTTP Requests
+* Callback Functions
+* Custom HTTP Library (AJAX with Callbacks)
+* ES6 Promises
+* The Fetch API
+* Arrow Functions
+* Async & Await
+* Custom HTTP Library (Fetch with Async Await)

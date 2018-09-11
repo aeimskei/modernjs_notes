@@ -24,7 +24,36 @@ function getJokes(e) {
     if (this.status === 200) {
       // parse json
       const response = JSON.parse(this.responseText);
-      console.log(response); // test log
+      // console.log(response); // test log
+
+      // ================================
+      // Dynamically show on UI
+      // ================================
+
+      // set initialize output data
+      let output = '';
+      let values = response.value;
+
+      // make sure the response 'type' is 'success'
+      if (response.type === 'success') {
+        // loop through array from 'value'
+        values.forEach(function(value) {
+          output += `
+            <li>${value.joke}</li>
+            <hr>
+          `;
+        })
+
+      } else {
+        // set output to append with += template to display
+        output += `
+          <li>Error, something went wrong.</li>
+        `;
+      }
+
+      // insert dynamically to html
+      const display = document.querySelector('.jokes');
+      display.innerHTML = output;
     }
   }
 
