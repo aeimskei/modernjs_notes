@@ -204,3 +204,52 @@ Note: the paramete ```reponse``` can be named something different too
 
 * Use ```null``` in the callback as the first parameter, and then the response will be the second
 
+**library.js**
+```
+libraryHTTP.prototype.get = function(url, callback) {
+  this.http.open('GET', url, true);
+
+  let self = this;
+
+  this.http.onload = function() {
+    if (self.http.status === 200) {
+      callback(null, self.http.responseText);
+    } else {
+      callback('Error: ' + self.http.status);
+    }
+  }
+
+  this.http.send();
+}
+```
+
+**app.js** - test for error
+```
+const http = new libraryHtttp;
+
+http.get('https://jsonplaceholder.typicode.com/posts', function(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+```
+
+If in ```app.js``` the url is:
+
+```
+const http = new libraryHtttp;
+
+http.get('https://jsonplaceholder.typicode.com/posts1', function(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+```
+
+<kbd>![alt text](img/404error.png "screenshot")</kbd>
+
+You'll get the browser error and also the error we created from our library that says 'Error: 404'.
