@@ -253,3 +253,73 @@ http.get('https://jsonplaceholder.typicode.com/posts1', function(error, response
 <kbd>![alt text](img/404error.png "screenshot")</kbd>
 
 You'll get the browser error and also the error we created from our library that says 'Error: 404'.
+
+## GET single post
+
+**app.js**
+```
+http.get('https://jsonplaceholder.typicode.com/posts/1', function(error, response) {
+  // test for error
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+```
+
+<kbd>![alt text](img/singlepost.png "screenshot")</kbd>
+
+## POST Request
+
+```libraryHTTP.prototype.post``` set it to a function that takes in a ```url``` and second ```data``` bc when you're adding data, you obviosuly need to send the data, third we need a callback.
+
+This works very similar to a GET request. Except ```this.http.open()``` pass in ```POST```, then ```url``` and ```true```.
+
+Towards the bottom, ```this.send();``` you'll actually need to send the ```data```. The ```data``` is just going to be a regular JavaScript object when we pass it in. So, we'll need to run it through a function JSON.stringify and send it as a JSON string. ```this.send(JSON.stringify(data));```
+
+Need to set the content type, that's done in ```this.http.setRequestHeader()``` and the OPTION we want to set is ```'Content-type'```.
+
+For a POST request, we don't need to check the status, all we want to do is send the ```callback(null, self.http.responseText)```. The ```responseText``` should be the new post that we added. The way we know that it's a new post is that it should have an id of ```101``` bc when you make the initial GET request, the last one is the id of ```100```
+
+**library.js**
+```
+libraryHTTP.prototype.post = function(url, data, callback) {
+  this.http.open('POST', url, true);
+
+  this.http.setRequestHeader('Content-type', 'application/json');
+
+  let self = this;
+
+  this.http.onload = function() {
+  
+    callback(null, self.http.responseText);
+
+  }
+
+  this.http.send(JSON.stringify(data));
+}
+```
+
+**app.js**
+```
+// create data
+const data = {
+  title: 'First Custom Post',
+  body: 'Testing out our first custom post.'
+};
+
+// create post
+http.post('https://jsonplaceholder.typicode.com/posts', data, function(error, response) {
+  // test for error
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+```
+
+<kbd>![alt text](img/createpost.png "screenshot")</kbd>
+
+You'll see that we get our new post with title, body and also comes with the id ```101```
