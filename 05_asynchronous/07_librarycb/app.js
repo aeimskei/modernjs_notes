@@ -12,4 +12,6 @@ const http = new libraryHTTP;
 // Use the get prototype function on http
 // pass in the url
 
-http.get('https://jsonplaceholder.typicode.com/posts');
+const posts = http.get('https://jsonplaceholder.typicode.com/posts');
+
+console.log(posts);

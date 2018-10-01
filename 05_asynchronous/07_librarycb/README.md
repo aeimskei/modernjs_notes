@@ -131,9 +131,39 @@ libraryHTTP.prototype.get = function(url) {
 
 * Then, down at the bottom, ```this.http.send();```.
 
-## Synchronous Version
+## Synchronous Version - doesn't work
+
+You may think that what we can do is ```return self.http.responseText```, and then go back to ```app.js``` and set ```const posts = http.get('https://jsonplaceholder.typicode.com/posts');``` and then ```console.log(posts)```. It actually doens't work, we get ```undefined```.
+
+**library.js**
+```
+libraryHTTP.prototype.get = function(url) {
+  this.http.open('GET', url, true);
+
+  let self = this;
+
+  this.http.onload = function() {
+    if (self.http.status === 200) {
+      // console.log(self.http.responseText);
+       return self.http.responseText;
+    }
+  }
+
+  this.http.send();
+}
+```
 
 **app.js**
 ```
+const http = new libraryHTTP;
 
+const posts = http.get('https://jsonplaceholder.typicode.com/posts');
+console.log(posts);
 ```
+
+<kbd>![alt text](img/undefined.png "screenshot")</kbd>
+
+What's happening here is similar to what happened in the previous example in the callback where it was returned, the data that was returned before it was actually added. So, the way that we fix this is with a ```callback```.
+
+## Asynchronous Version - works with Callback
+
