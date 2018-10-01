@@ -10,8 +10,10 @@ const http = new libraryHTTP;
 // =====================================
 
 // Use the get prototype function on http
-// pass in the url
+// Pass in the url
+// In async version, use a callback function to get response
+// Note: the parameter response can be changed to a different name too
 
-const posts = http.get('https://jsonplaceholder.typicode.com/posts');
-
-console.log(posts);
+http.get('https://jsonplaceholder.typicode.com/posts', function(response) {
+  console.log(response);
+});

@@ -167,3 +167,40 @@ What's happening here is similar to what happened in the previous example in the
 
 ## Asynchronous Version - works with Callback
 
+Pass in 
+
+**library.js**
+```
+libraryHTTP.prototype.get = function(url, callback) {
+  this.http.open('GET', url, true);
+
+  let self = this;
+
+  this.http.onload = function() {
+    if (self.http.status === 200) {
+      // console.log(self.http.responseText);
+      callback(self.http.responseText);
+    }
+  }
+
+  this.http.send();
+}
+```
+
+**app.js**
+```
+const http = new libraryHtttp;
+
+http.get('https://jsonplaceholder.typicode.com/posts', function(response) {
+  console.log(response);
+});
+```
+
+Note: the paramete ```reponse``` can be named something different too
+
+<kbd>![alt text](img/response.png "screenshot")</kbd>
+
+## Dealing with Error
+
+* Use ```null``` in the callback as the first parameter, and then the response will be the second
+

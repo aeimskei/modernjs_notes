@@ -12,15 +12,14 @@ function libraryHTTP() {
 
 // Make an HTTP GET request
 
-libraryHTTP.prototype.get = function(url) {
+libraryHTTP.prototype.get = function(url, callback) {
   this.http.open('GET', url, true);
 
   let self = this;
 
   this.http.onload = function() {
     if (self.http.status === 200) {
-      // console.log(self.http.responseText);
-       return self.http.responseText;
+      callback(self.http.responseText);
     }
   }
 
