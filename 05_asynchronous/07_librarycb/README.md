@@ -322,4 +322,4 @@ http.post('https://jsonplaceholder.typicode.com/posts', data, function(error, re
 
 <kbd>![alt text](img/createpost.png "screenshot")</kbd>
 
-You'll see that we get our new post with title, body and also comes with the id ```101```
+You'll see that we get our new post with title, body and also comes with the id ```101``` that means our newly created post has been added.
