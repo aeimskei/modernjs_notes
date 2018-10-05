@@ -63,12 +63,56 @@ console.log(helloThere());
 
 <kbd>![alt text](img/objliterals.png "screenshot")</kbd>
 
-What if we have parameters?
+What if we have parameters? If it's a single parameter, you don't need parantheses.
 
 ```
-const helloThere = (name) => console.log(`Hello ${name}!`);
+const helloThere = name => console.log(`Hello ${name}!`);
 
 helloThere('Rider');
 ```
 
 <kbd>![alt text](img/withparams.png "screenshot")</kbd>
+
+If we have more than one parameter, use parantheses:
+```
+const helloThere = (firstName, lastName) => console.log(`Hello ${firstName} ${lastName}!`);
+
+helloThere('Rider', 'McKenna');
+```
+
+<kbd>![alt text](img/withmoreparams.png "screenshot")</kbd>
+
+You can also use arrow functions as **callback functions**
+
+**ES5 version**
+```
+const names = ['Rider', 'Kai', 'Benjamin'];
+
+const nameLengths = names.map(function(name) {
+  return name.length;
+});
+
+console.log(nameLengths);
+```
+
+**ES6 version - shorter version**
+```
+const names = ['Rider', 'Kai', 'Benjamin'];
+
+const nameLengths = names.map((name) => {
+  return name.length;
+});
+
+console.log(nameLengths);
+```
+
+**ES6 version - shortest version**
+```
+const names = ['Rider', 'Kai', 'Benjamin'];
+
+const nameLengths = names.map(name => name.length);
+
+console.log(nameLengths);
+```
+
+<kbd>![alt text](img/names.png "screenshot")</kbd>
