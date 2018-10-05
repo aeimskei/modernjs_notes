@@ -12,7 +12,8 @@ function getText() {
       return response.text(); // gets the Promise
     })
     .then(function(data) {
-      console.log(data); // content from text.txt file
+      // console.log(data); // content from text.txt file
+      document.querySelector('#output').innerHTML = data;
     })
     .catch(function(error) {
       console.log(error);

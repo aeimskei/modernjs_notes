@@ -1,1 +1,1 @@
-A simple text file
+A simple text file from text.txt
