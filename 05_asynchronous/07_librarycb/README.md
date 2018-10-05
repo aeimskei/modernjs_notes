@@ -359,3 +359,65 @@ http.put('https://jsonplaceholder.typicode.com/posts/1', data, function(error, r
 ```
 
 <kbd>![alt text](img/putreq.png "screenshot")</kbd>
+
+## DELETE Request
+
+This one will actually be more similar to the GET request. But, the respone in the callback function when we're checking status, it's going to be just an empty object bc we're deleting a post with ```self.http.responseText```. 
+
+**library.js**
+```
+libraryHTTP.prototype.delete = function(url, callback) {
+  this.http.open('DELETE', url, true);
+
+  let self = this;
+
+  this.http.onload = function() {
+    if (self.http.status === 200) {
+      callback(null, self.http.responseText);
+    } else {
+      callback('Error: ' + self.http.status);
+    }
+  }
+
+  this.http.send();
+}
+```
+
+But instead, let's do this:
+
+**library.js**
+```
+libraryHTTP.prototype.delete = function(url, callback) {
+  this.http.open('DELETE', url, true);
+
+  let self = this;
+
+  this.http.onload = function() {
+    if (self.http.status === 200) {
+      callback(null, 'Post Deleted');
+    } else {
+      callback('Error: ' + self.http.status);
+    }
+  }
+
+  this.http.send();
+}
+```
+
+**app.js**
+```
+http.delete('https://jsonplaceholder.typicode.com/posts/1', function(error, response) {
+  // test for error
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+```
+
+<kbd>![alt text](img/deletereq.png "screenshot")</kbd>
+
+## Summary
+
+That's our simple example of how to build a library. Axios and other library frameworks are built like this, but a lot more to it.
