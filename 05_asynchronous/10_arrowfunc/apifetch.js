@@ -31,11 +31,8 @@ button2.addEventListener('click', getJson);
 // create getJson function - use fetch
 function getJson() {
   fetch('posts.json')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      // console.log(data);
+    .then(response => response.json())
+    .then(data => {
       let output = '';
       data.forEach(function(post) {
         output += `
@@ -44,9 +41,7 @@ function getJson() {
       });
       document.querySelector('#output').innerHTML = output;
     })
-    .catch(function(error) {
-      console.log(error);
-    })
+    .catch(error => console.log(error));
 }
 
 // ========================================
@@ -62,11 +57,8 @@ button3.addEventListener('click', getExternalApi);
 // create getExternalApi
 function getExternalApi() {
   fetch('https://api.github.com/users')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      console.log(data);
+    .then(response => response.json())
+    .then(data => {
       let output = '';
       data.forEach(function(user) {
         output += `
@@ -75,7 +67,5 @@ function getExternalApi() {
       });
       document.querySelector('#output').innerHTML = output;
     })
-    .catch(function(error) {
-      console.log(error);
-    })
+    .catch(error => console.log(error));
 }
