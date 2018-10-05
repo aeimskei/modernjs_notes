@@ -123,3 +123,73 @@ function getText() {
 ```
 
 <kbd>![alt text](img/txterror.png "screenshot")</kbd>
+
+## Get JSON File
+
+**posts.json**
+```
+[
+  {
+    "title": "First Post",
+    "body": "This is the first post."
+  },
+  {
+    "title": "Second Post",
+    "body": "This is the second post."
+  },
+  {
+    "title": "Third Post",
+    "body": "This is the third post."
+  }
+]
+```
+
+**apifetch.js**
+```
+// grab button2 from HTML
+const button2 = document.querySelector('#button2');
+
+// add event listener to click
+button2.addEventListener('click', getJson);
+
+// create getJson function - use fetch
+function getJson() {
+  fetch('posts.json')
+    .then(function(response) {
+      console.log(response);
+    })
+}
+```
+
+<kbd>![alt text](img/fetchjson.png "screenshot")</kbd>
+
+```
+// create getJson function - use fetch
+function getJson() {
+  fetch('posts.json')
+    .then(function(response) {
+      console.log(response.json());
+    })
+}
+```
+
+With ```response.json()```:
+
+<kbd>![alt text](img/resjson.png "screenshot")</kbd>
+
+Make the frist ```.then``` return ```response.json()```:
+
+```
+// create getJson function - use fetch
+function getJson() {
+  fetch('posts.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      console.log(data);
+    })
+}
+```
+
+<kbd>![alt text](img/returnjson.png "screenshot")</kbd>

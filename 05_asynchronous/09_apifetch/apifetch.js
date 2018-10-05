@@ -1,3 +1,7 @@
+// ========================================
+// Fetch API for Text File
+// ========================================
+
 // grab button ids from HTML
 const button1 = document.querySelector('#button1');
 
@@ -19,3 +23,35 @@ function getText() {
       console.log(error);
     });
 }
+
+// ========================================
+// Fetch API for JSON File
+// ========================================
+
+// grab button2 from HTML
+const button2 = document.querySelector('#button2');
+
+// add event listener to click
+button2.addEventListener('click', getJson);
+
+// create getJson function - use fetch
+function getJson() {
+  fetch('posts.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      // console.log(data);
+      let output = '';
+      data.forEach(function(post) {
+        output += `
+          <li>${post.title}</li>
+        `
+      });
+      document.querySelector('#output').innerHTML = output;
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+}
+
