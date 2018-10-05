@@ -37,6 +37,14 @@ console.log(helloThere());
 
 // Return Object Literal issue
 
+/*
 const helloThere = () => ({message: 'Just saying hello there!'});
 
 console.log(helloThere());
+*/
+
+// With parameters
+
+const helloThere = (name) => console.log(`Hello ${name}!`);
+
+helloThere('Rider');

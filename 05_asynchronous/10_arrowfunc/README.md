@@ -62,3 +62,13 @@ console.log(helloThere());
 ```
 
 <kbd>![alt text](img/objliterals.png "screenshot")</kbd>
+
+What if we have parameters?
+
+```
+const helloThere = (name) => console.log(`Hello ${name}!`);
+
+helloThere('Rider');
+```
+
+<kbd>![alt text](img/withparams.png "screenshot")</kbd>
