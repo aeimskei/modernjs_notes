@@ -7,7 +7,14 @@ function createPost(post) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       posts.push(post);
-      resolve();
+
+      const error = false; // switch btwn true and false to test
+
+      if (!error) {
+        resolve();
+      } else {
+        reject('Error: something went wrong!');
+      }  
     }, 2000);
   });
 }
@@ -22,4 +29,8 @@ function getPosts() {
   }, 1000);
 }
 
-createPost({title: 'Third Post', body: 'This is the third body.'}).then(getPosts);
+createPost({title: 'Third Post', body: 'This is the third body.'})
+.then(getPosts)
+.catch(function(error){
+  console.log(error);
+});
