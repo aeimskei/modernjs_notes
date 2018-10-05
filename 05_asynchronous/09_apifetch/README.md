@@ -193,3 +193,47 @@ function getJson() {
 ```
 
 <kbd>![alt text](img/returnjson.png "screenshot")</kbd>
+
+Iterate through array to output ```posts.json``` data on browser:
+
+<kbd>![alt text](img/iterate.png "screenshot")</kbd>
+
+<kbd>![alt text](img/outputjson.png "screenshot")</kbd>
+
+## GET external API data
+
+We'll use the GitHub API for users, api.github.com/users
+
+<kbd>![alt text](img/githubapi.png "screenshot")</kbd>
+
+```
+
+// grab button id from HTML
+button3 = document.querySelector('#button3');
+
+// add event listener on click
+button3.addEventListener('click', getExternalApi);
+
+// create getExternalApi
+function getExternalApi() {
+  fetch('https://api.github.com/users')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      let output = '';
+      data.forEach(function(user) {
+        output += `
+          <li>${user.login}</li>
+        `
+      });
+      document.querySelector('#output').innerHTML = output;
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+}
+```
+
+<kbd>![alt text](img/fetchgithubusers.png "screenshot")</kbd>

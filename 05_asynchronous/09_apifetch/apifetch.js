@@ -1,5 +1,5 @@
 // ========================================
-// Fetch API for Text File
+// Fetch API from Text File
 // ========================================
 
 // grab button ids from HTML
@@ -25,7 +25,7 @@ function getText() {
 }
 
 // ========================================
-// Fetch API for JSON File
+// Fetch API from JSON File
 // ========================================
 
 // grab button2 from HTML
@@ -55,3 +55,33 @@ function getJson() {
     })
 }
 
+// ========================================
+// Fetch API from External data
+// ========================================
+
+// grab button id from HTML
+button3 = document.querySelector('#button3');
+
+// add event listener on click
+button3.addEventListener('click', getExternalApi);
+
+// create getExternalApi
+function getExternalApi() {
+  fetch('https://api.github.com/users')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      let output = '';
+      data.forEach(function(user) {
+        output += `
+          <li>${user.login}</li>
+        `
+      });
+      document.querySelector('#output').innerHTML = output;
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+}
