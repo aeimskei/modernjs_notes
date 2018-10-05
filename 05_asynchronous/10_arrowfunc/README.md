@@ -116,3 +116,8 @@ console.log(nameLengths);
 ```
 
 <kbd>![alt text](img/names.png "screenshot")</kbd>
+
+## The Fetch API example with Arrow Functions
+
+Here, we're gonna switch out the Fetch API example to using arrow functions, notice how there's less code and is also a lot neater.
+
