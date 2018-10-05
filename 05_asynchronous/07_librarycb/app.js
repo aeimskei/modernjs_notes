@@ -46,9 +46,23 @@ const data = {
   body: 'Testing out our first custom post.'
 };
 
+/*
 // create post
 http.post('https://jsonplaceholder.typicode.com/posts', data, function(error, response) {
   // test for error
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+*/
+
+// =====================================
+// PUT request, update
+// =====================================
+
+http.put('https://jsonplaceholder.typicode.com/posts/1', data, function(error, response) {
   if (error) {
     console.log(error);
   } else {

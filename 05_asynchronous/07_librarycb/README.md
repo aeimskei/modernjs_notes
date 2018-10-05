@@ -322,6 +322,40 @@ http.post('https://jsonplaceholder.typicode.com/posts', data, function(error, re
 
 <kbd>![alt text](img/createpost.png "screenshot")</kbd>
 
-You'll see that we get our new post with title, body and also comes with the id ```101``` that means our newly created post has been added.
+You'll see that we get our new post with title, body and also comes with the id ```101``` that means our newly created post has been added, it got added by the external server that we're relying on, the external API, their backend. We didn't code it in. There you go, our POST request now works.
 
-You'll see that we get our new post with title, body and also comes with the id ```101``` that means our newly created post has been added.
+## PUT Request
+
+It's going to be similar to our POST request. Just change from POST to PUT. Then, you can change the url post id in order to update specific posts.
+
+**library.js**
+```
+libraryHTTP.prototype.put = function(url, data, callback) {
+  this.http.open('PUT', url, true);
+
+  this.http.setRequestHeader('Content-type', 'application/json');
+
+  let self = this;
+
+  this.http.onload = function() {
+  
+    callback(null, self.http.responseText);
+
+  }
+
+  this.http.send(JSON.stringify(data));
+}
+```
+
+**app.js**
+```
+http.put('https://jsonplaceholder.typicode.com/posts/1', data, function(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+});
+```
+
+<kbd>![alt text](img/putreq.png "screenshot")</kbd>
