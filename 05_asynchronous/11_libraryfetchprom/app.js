@@ -12,8 +12,6 @@ http.get('https://jsonplaceholder.typicode.com/users');
 //   .then(data => console.log(data))
 //   .catch(error => console.log(error));
 
-
-// POST
 // create data
 const data = {
   name: 'Rider McKenna',
@@ -22,6 +20,11 @@ const data = {
 }
 
 // create POST
-http.post('https://jsonplaceholder.typicode.com/users', data)
+// http.post('https://jsonplaceholder.typicode.com/users', data)
+//   .then(data => console.log(data))
+//   .catch(error => console.log(error));
+
+// create PUT, update post
+http.put('https://jsonplaceholder.typicode.com/users/2', data)
   .then(data => console.log(data))
   .catch(error => console.log(error));

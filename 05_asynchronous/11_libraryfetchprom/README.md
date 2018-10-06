@@ -127,3 +127,42 @@ http.post('https://jsonplaceholder.typicode.com/users', data)
 <kbd>![alt text](img/post.png "screenshot")</kbd>
 
 Notice that it's showing id ```11```, that means we're a new one has been added bc remember, earlier, it was ```10```.
+
+## PUT Request
+
+Everything is the same like a POST request, but change it to PUT.
+
+**library.js**
+```
+...
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  }
+}
+```
+
+We'll update ```https://jsonplaceholder.typicode.com/users/2```. You'll see that id ```2``` has the updated user data from our ```const data```
+
+**app.js**
+```
+const data = {
+  name: 'Rider McKenna',
+  username: 'rider',
+  email: 'rider@example.com'
+}
+
+http.put('https://jsonplaceholder.typicode.com/users/2', data)
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+```
