@@ -166,3 +166,38 @@ http.put('https://jsonplaceholder.typicode.com/users/2', data)
   .then(data => console.log(data))
   .catch(error => console.log(error));
 ```
+
+<kbd>![alt text](img/put.png "screenshot")</kbd>
+
+## DELETE Request
+
+It'll be similar to the PUT request, but we don't need to pass in data and change method to DELETE. Also, we'll send a string for ```resolve``` rather than an empty object.
+
+**library.js**
+```
+...
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(() => resolve('User deleted'))
+      .catch(error => reject(error));
+    });
+  }
+}
+```
+
+**app.js**
+```
+http.delete('https://jsonplaceholder.typicode.com/users/2')
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+```
+
+<kbd>![alt text](img/delete.png "screenshot")</kbd>
