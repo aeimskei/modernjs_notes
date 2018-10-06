@@ -98,3 +98,24 @@ myFunction()
 There you go, this above example isn't the best example, just an intro for us to play around and use async and await. The next one will be simple as well, but slightly better bc we will be using it with Fetch API, which is the best case to use.
 
 ## Async & Await with Fetch API
+
+Usually with our ```const response``` we'd have to do two ```.then()```, but now bc we're using ```await fetch()``` we can instead create a variable called ```data``` or whatever you want to name it and set it to ```await response.json()``` and then ```return``` the ```data```.
+
+```
+async function getNames() {
+  // await response of the fetch call
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+
+  // proceed once that promise is resolved
+  const data = await response.json();
+  
+  // process when the second Promise is resolved
+  return data;
+}
+
+getNames().then(names => console.log(names));
+```
+
+<kbd>![alt text](img/fetch.png "screenshot")</kbd>
+
+This looks a lot neater than the previous version bc we don't have to deal with the two ```.then()``` like before.
