@@ -20,35 +20,29 @@ class libraryHTTP {
   }
 
   // make HTTP POST request
-  post(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(data => resolve(data))
-      .catch(error => reject(error));
+  async post(url, data) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
     });
+    const responseData = await response.json();
+    return responseData;
   }
 
   // make HTTP PUT or update request
-  put(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(data => resolve(data))
-      .catch(error => reject(error));
-    });
+  async put(url, data) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    const responseData = await response.json();
+    return responseData;
   }
 
   // make HTTP DELETE
