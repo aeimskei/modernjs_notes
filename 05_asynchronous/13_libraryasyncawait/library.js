@@ -1,0 +1,69 @@
+/**
+  * Simple HTTP Library
+  * Library for making HTTP requests
+  * 
+  * @version 3.0.0
+  * @author Amy
+  * @license MIT
+  * 
+**/
+
+// Use ES6 Classes
+// no need for Constructor bc we don't need the XHR Object,
+
+class libraryHTTP {
+  // make HTTP GET request
+  async get(url) {
+    const response = await fetch(url);
+    const responseData = await response.json();
+    return responseData;
+  }
+
+  // make HTTP POST request
+  post(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  }
+
+  // make HTTP PUT or update request
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+    });
+  }
+
+  // make HTTP DELETE
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(() => resolve('User deleted'))
+      .catch(error => reject(error));
+    });
+  }
+}
