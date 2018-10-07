@@ -75,7 +75,7 @@ http.post('https://jsonplaceholder.typicode.com/users', data)
         'Content-type': 'application/json'
       },
       body: JSON.stringify(data)
-    })
+    });
     const responseData = await response.json();
     return responseData;
   }
@@ -90,3 +90,31 @@ http.put('https://jsonplaceholder.typicode.com/users/2', data)
 ```
 
 <kbd>![alt text](img/put.png "screenshot")</kbd>
+
+## DELETE Request
+
+**library.js**
+```
+...
+  async delete(url) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const responseData = await 'User deleted';
+    return responseData;
+  }
+}
+```
+
+**app.js**
+```
+http.delete('https://jsonplaceholder.typicode.com/users/2')
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+```
+
+<kbd>![alt text](img/delete.png "screenshot")</kbd>

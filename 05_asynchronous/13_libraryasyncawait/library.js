@@ -40,24 +40,21 @@ class libraryHTTP {
         'Content-type': 'application/json'
       },
       body: JSON.stringify(data)
-    })
+    });
     const responseData = await response.json();
     return responseData;
   }
 
   // make HTTP DELETE
-  delete(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(() => resolve('User deleted'))
-      .catch(error => reject(error));
+  async delete(url) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
     });
+    const responseData = await 'User deleted';
+    return responseData;
   }
 }
