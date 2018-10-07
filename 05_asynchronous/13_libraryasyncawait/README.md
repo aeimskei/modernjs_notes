@@ -67,10 +67,26 @@ http.post('https://jsonplaceholder.typicode.com/users', data)
 
 **library.js**
 ```
-
+...
+  async put(url, data) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    const responseData = await response.json();
+    return responseData;
+  }
 ```
 
 **app.js**
 ```
-
+// create PUT, update post
+http.put('https://jsonplaceholder.typicode.com/users/2', data)
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
 ```
+
+<kbd>![alt text](img/put.png "screenshot")</kbd>
