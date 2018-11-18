@@ -44,3 +44,4 @@ This is what's great about using Promises and using **async await** as opposed t
 
 ## Connect between app.js and github.js
 
+We need to **instantiate** the Class ```Github``` from github.js into the app.js file at the top of app.js file to use (kinda of like importing in React).
