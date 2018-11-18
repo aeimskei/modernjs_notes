@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+  <!-- Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <!-- Font Awesome Script -->
+  <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
+  <title>Find GitHub Users</title>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="blue-grey">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Find <i class="fab fa-github"></i> Users</a>
+    </div>
+  </nav>
+
+  <!-- FORM -->
+  <div class="container searchContainer" style="padding-top: 50px;">
+    <div class="card-panel lighten-3">
+      <h5>Search User</h5>
+      <div class="input-field">
+        <input type="text" id="searchUser" placeholder="Enter a username to fetch a user's profile info and repos">
+      </div>
+    </div>
+    <br>
+    <!-- INSERT PROFILE DYNAMICALLY -->
+    <div id="profile"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="config.js"></script>
+  <script src="github.js"></script>
+  <script src="ui.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
