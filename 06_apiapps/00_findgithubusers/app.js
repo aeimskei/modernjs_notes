@@ -17,7 +17,18 @@ searchUser.addEventListener('keyup', (e) => {
     github.getUser(userText)
       // returns a promise with .then & will give data
       .then(data => {
-        console.log(data); // test fetched data log
+        // console.log(data); // test fetched data log
+
+        // check if profile exists
+        if (data.profile.message === 'Not Found') {
+          // then show an alert (create in ui.js Class)
+
+        } else {
+          // show profile (create in us.js Class)
+        }
       })
+  } else {
+    // if true, clear profile info on DOM (create in us.js Class)
+
   }
 });

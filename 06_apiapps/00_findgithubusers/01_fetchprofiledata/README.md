@@ -45,3 +45,17 @@ This is what's great about using Promises and using **async await** as opposed t
 ## Connect between app.js and github.js
 
 We need to **instantiate** the Class ```Github``` from github.js into the app.js file at the top of app.js file to use (kinda of like importing in React).
+
+**app.js**
+<kbd>![alt text](img/instantgithub.png "screenshot")</kbd>
+
+
+**github.js**
+<kbd>![alt text](img/profiledata.png "screenshot")</kbd>
+
+## Error Message of Not Found
+
+<kbd>![alt text](img/messagenotfound.png "screenshot")</kbd>
+
+We should check to see if User exists, if we get a message of "Not Found" from the data we recieved, do something.
+
