@@ -32,7 +32,7 @@ searchUser.addEventListener('keyup', (e) => {
         }
       })
   } else {
-    // if true, clear profile info on DOM (create in us.js Class)
-
+    // if true, clear profile info on DOM (create in ui.js Class)
+    ui.clearProfile();
   }
 });

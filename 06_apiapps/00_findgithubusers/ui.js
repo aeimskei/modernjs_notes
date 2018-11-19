@@ -40,4 +40,9 @@ class UI {
       <div id="repos"></div>
     `;
   }
+
+  // Function to clear profile (will be used in app.js)
+  clearProfile() {
+    this.profile.innerHTML = '';
+  }
 }
