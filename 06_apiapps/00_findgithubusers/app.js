@@ -1,6 +1,9 @@
 // instantiate github bc it's a Class
 const github = new GitHub;
 
+// instantiate the UI Class
+const ui = new UI;
+
 // grab search input from UI
 const searchUser = document.getElementById('searchUser');
 
@@ -25,6 +28,7 @@ searchUser.addEventListener('keyup', (e) => {
 
         } else {
           // show profile (create in us.js Class)
+          ui.showProfile(data.profile);
         }
       })
   } else {

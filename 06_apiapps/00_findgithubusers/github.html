@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-  <!-- Import materialize.css-->
+  <!-- Import Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="custom.css">
   <!-- Font Awesome Script -->
   <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
   <title>Find GitHub Users</title>
@@ -26,12 +29,16 @@
     <div class="card-panel lighten-3">
       <h5>Search User</h5>
       <div class="input-field">
-        <input type="text" id="searchUser" placeholder="Enter a username to fetch a user's profile info and repos">
+        <input type="text" id="searchUser" placeholder="Enter a username to fetch info">
       </div>
     </div>
     <br>
     <!-- INSERT PROFILE DYNAMICALLY -->
-    <div id="profile"></div>
+    <div id="profile">
+      <!-- template inject -->
+        <!-- from ui.js -->
+      <!-- /template inject -->
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

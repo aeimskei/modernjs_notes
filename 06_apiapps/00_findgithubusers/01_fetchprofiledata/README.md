@@ -59,3 +59,4 @@ We need to **instantiate** the Class ```Github``` from github.js into the app.js
 
 We should check to see if User exists, if we get a message of "Not Found" from the data we recieved, do something.
 
+Next, we'll setup the ```ui.js``` file. 

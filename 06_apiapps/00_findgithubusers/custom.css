@@ -1,0 +1,12 @@
+a.btn {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 20px;
+}
+
+span.badge {
+  display: block;
+  width: 100%;
+  margin: 3px;
+}
