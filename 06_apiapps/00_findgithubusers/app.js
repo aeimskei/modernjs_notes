@@ -24,8 +24,10 @@ searchUser.addEventListener('keyup', (e) => {
 
         // check if profile exists
         if (data.profile.message === 'Not Found') {
+          // clear template DOM if no matched User
+          ui.clearProfile();
           // then show an alert (create in ui.js Class)
-
+          ui.showAlert('User not found', 'badge error red lighten-2')
         } else {
           // show profile (create in us.js Class)
           ui.showProfile(data.profile);

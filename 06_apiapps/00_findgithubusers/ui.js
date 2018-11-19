@@ -45,4 +45,37 @@ class UI {
   clearProfile() {
     this.profile.innerHTML = '';
   }
+
+  // Function to show alert message when user not found (will be used in app.js)
+  showAlert(message, className) {
+    // clear any remaining alerts
+    this.clearAlert();
+
+    // create an alert div from scratch
+    const div = document.createElement('div');
+    // add class to the div
+    div.className = className;
+    // add text with textNode
+    div.appendChild(document.createTextNode(message));
+    // get parent called searchContainer to insert the alert
+    const container = document.querySelector('.searchContainer');
+    // get the search box
+    const search = document.querySelector('.search');
+    // insert alert
+    container.insertBefore(div, search);
+
+    // timeout after 3 seconds
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000)
+  }
+
+  // Function to clear alert message
+  clearAlert() {
+    const currentAlert = document.querySelector('.error');
+    // check to see if there is a message alert
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
 }

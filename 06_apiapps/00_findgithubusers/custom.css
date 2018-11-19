@@ -10,3 +10,11 @@ span.badge {
   width: 100%;
   margin: 3px;
 }
+
+.badge.error {
+  display: block;
+  width: 100%;
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+}
