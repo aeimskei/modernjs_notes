@@ -8,7 +8,7 @@ Create a ```Weather``` class.
 const wKey = config.API_KEY;
 
 class Weather {
-  constructor() {
+  constructor(city, state) {
     this.apiKey = wKey;
     this.city = city;
     this.state = state;
@@ -50,7 +50,7 @@ class Weather {
 const wKey = config.API_KEY;
 
 class Weather {
-  constructor() {
+  constructor(city, state) {
     this.apiKey = wKey;
     this.city = city;
     this.state = state;
@@ -70,3 +70,49 @@ class Weather {
   }
 }
 ```
+
+## Initalize/Instantiate our Weather Class in app.js
+
+Remember, the ```Weather Class``` takes in a ```city``` and ```state```. 
+
+So we create a variable called ```weather``` and set it to an instantiation of the ```Weather``` Class. To test our fetch, let's hard code in the city and state to San Francisco, CA as its parameters.
+
+Then below, ```weather.getWeather()``` it's going to return a **Promise** bc ```getWeather()``` from **weather.js** is **Asynchronous**. By using ```async```, means it's going to return a Promise, so we need to use ```.then``` and ```.catch``` in it.
+
+**app.js**
+```
+const weather = new Weather('San Francisco', 'CA');
+
+// test out if we can get the weather
+weather.getWeather()
+  .then(results => {
+    console.log(results);
+  })
+  .catch(error => console.log(error));
+ 
+```
+
+<kbd>![alt text](img/testfetch.png "screenshot")</kbd>
+
+When you look at the object, you'll see all the weather information for San Francisco, CA.
+
+## Wrap Get Weather into a Function
+
+When the DOM loads, should call the get weather function.
+
+**app.js**
+```
+const weather = new Weather('San Francisco', 'CA');
+
+document.addEventListener('DOMContentLoaded', getWeather);
+
+function getWeather() {
+  weather.getWeather()
+    .then(results => {
+      console.log(results);
+    })
+    .catch(error => console.log(error));
+}
+```
+
+Next, we'll work on the UI Class to dynamically insert info to the DOM.
