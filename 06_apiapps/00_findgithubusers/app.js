@@ -29,12 +29,20 @@ searchUser.addEventListener('keyup', (e) => {
           // then show an alert (create in ui.js Class)
           ui.showAlert('User not found', 'badge error red lighten-2')
         } else {
-          // show profile (create in us.js Class)
+          // hide alert
+          if (data.profile.message !== 'Not Found') {
+            ui.clearAlert();
+          }
+          // show profile (create in ui.js Class)
           ui.showProfile(data.profile);
+          // show repo (create in ui.js Class)
+          ui.showRepo(data.repos);
         }
       })
   } else {
     // if true, clear profile info on DOM (create in ui.js Class)
     ui.clearProfile();
+    // if search bar empty, remove alert
+    ui.clearAlert();
   }
 });

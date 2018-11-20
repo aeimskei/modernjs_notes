@@ -3,6 +3,7 @@ class UI {
     this.profile = document.getElementById('profile');
   }
 
+  // Function to show profile
   showProfile(user) {
     // console.log(user); // test log user
 
@@ -16,16 +17,16 @@ class UI {
         <div class="col m9">
           <div class="row">
             <div class="col l5 m9 s12">
-              <span class="new badge green">Public Repos: ${user.public_repos}</span>
+              <span class="new badge profile-badge green">Public Repos: ${user.public_repos}</span>
             </div>
             <div class="col l5 m9 s12">
-              <span class="new badge red">Public Gist: ${user.gist}</span>
+              <span class="new badge profile-badge red">Public Gist: ${user.gist}</span>
             </div>
             <div class="col l5 m9 s12">
-              <span class="new badge blue">Public Followers: ${user.followers}</span>
+              <span class="new badge profile-badge blue">Public Followers: ${user.followers}</span>
             </div>
             <div class="col l5 m9 s12">
-              <span class="new badge purple">Public Following: ${user.following}</span>
+              <span class="new badge profile-badge purple">Public Following: ${user.following}</span>
             </div>
           </div>
           <ul class="collection">
@@ -40,6 +41,41 @@ class UI {
       <div id="repos"></div>
     `;
   }
+
+  // Function to show repos
+  showRepo(repos) {
+    console.log(repos)
+    let output = '';
+
+    repos.forEach(function(repo) {
+      output += `
+        <div class="card-panel">
+          <div class="row">
+            <div class="col m3 s12">
+              <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+            </div>
+            <div class="col m8 s12">
+              <div class="row">
+                <div class="col m4 s12">
+                  <span class="new badge repo-badge green">Stars: ${repo.stargazers_count}</span>
+                </div>
+                <div class="col m4 s12">
+                  <span class="new badge repo-badge blue">Watchers: ${repo.watchers_count}</span>
+                </div>
+                <div class="col m4 s12">
+                  <span class="new badge repo-badge red">Forks: ${repo.forms_count}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    })
+
+    // output repos
+    document.getElementById('repos').innerHTML = output;
+  }
+
 
   // Function to clear profile (will be used in app.js)
   clearProfile() {
@@ -64,10 +100,10 @@ class UI {
     // insert alert
     container.insertBefore(div, search);
 
-    // timeout after 3 seconds
-    setTimeout(() => {
-      this.clearAlert();
-    }, 3000)
+    // // timeout after 3 seconds to clear alert (don't like this vers.)
+    // setTimeout(() => {
+    //   this.clearAlert();
+    // }, 3000)
   }
 
   // Function to clear alert message
