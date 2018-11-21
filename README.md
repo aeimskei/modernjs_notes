@@ -61,3 +61,20 @@ Feel free to fork or star this repo and learn from it. This starts off very begi
 * Arrow Functions
 * Async & Await
 * Custom HTTP Library (Fetch with Async Await)
+
+## API Project Examples
+
+* GitHub API + Alert Message
+* Weather API + Local Storage
+
+## Error Handling
+
+* Try and Catch
+
+## Regular Expressions
+
+* Evaluation Functions
+* Metacharacter Symbols
+* Character Sets & Quantifiers
+* Shorthand Character Classes
+* Form Validation
