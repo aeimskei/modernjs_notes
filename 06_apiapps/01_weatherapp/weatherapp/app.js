@@ -16,7 +16,11 @@ modalBtn.addEventListener('click', (e) => {
   const city = document.getElementById('city').value;
   const state = document.getElementById('state').value;
 
-  weather.changeLocation('Modesto', 'CA');
+  // Change Location
+  weather.changeLocation(city, state);
+
+  // Set Location in Local Storage
+  storage.setLocationData(city, state);
 
   // Call getWeather and display
   getWeather();

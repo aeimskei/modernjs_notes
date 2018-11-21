@@ -31,11 +31,53 @@ modalBtn.addEventListener('click', (e) => {
 
 Need to create a ```Storage Class``` in storage.js and we're just going to initialize ```city``` and ```state``` (later add a default starter in case there's nothing in Local Storage).
 
+**storage.js**
 ```
 class Storage {
   constructor() {
     this.city;
     this.state;
+    this.defaultCity = 'Murrieta';
+    this.defaultState = 'CA'
+  }
+
+  getLocationData() {
+    // check if local storage is null
+    if (localStorage.getItem('city') === null && localStorage.getItem('state') === null) {
+      this.city = this.defaultCity;
+      this.state = this.defaultState;
+    } else {
+      this.city = localStorage.getItem('city');
+      this.state = localStorage.getItem('state');
+    }
+
+    return {
+      city: this.city,
+      state: this.state
+    }
+  }
+
+  setLocationData(city, state) {
+    localStorage.setItem('city', city);
+    localStorage.setItem('state', state);
   }
 }
 ```
+
+In **app.js** we need to instantiate the ```Storage Class``` and create a new variable called ```weatherLocation``` to access the storage class and the ```getLocationData()``` method.
+
+```
+const storage = new Storage();
+const weatherLocation = storage.getLocationData();
+```
+
+Then, inside the event listener on Modal Button click, add:
+```
+// Change Location
+weather.changeLocation(city, state);
+
+// Set Location in Local Storage
+storage.setLocationData(city, state);
+```
+
+<kbd>![alt text](img/savelocalstor.png "screenshot")</kbd>
