@@ -49,3 +49,5 @@ Then outside the Reveal Module, we can call `ItemController` with `add()` and pa
 <kbd>![alt text](img/reveal00.png "screenshot")</kbd>
 
 <kbd>![alt text](img/reveal01.png "screenshot")</kbd>
+
+The **Revealing Module Pattern** looks a lot cleaner, but the basic **Module Pattern** allows you to do more.
