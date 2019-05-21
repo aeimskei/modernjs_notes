@@ -17,7 +17,6 @@ So in this example, we're going to create a simple Member Factory that takes a *
 * Afterwards, we want to set the `member.type` equal to `type`.
 * Then, create a function/method associated with this object called `define` and it'll spit out the `name`, `membership type`, and `cost` of the membership.
 
-
 <kbd>![alt text](img/factory00.png "screenshot")</kbd>
 
 ## Constructor for Subclasses for Member Factory
