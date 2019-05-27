@@ -229,3 +229,254 @@ With `#item-list` in `<ul>`, it can be changed at anytime, and we don't want to 
 
 This makes our code more efficient and more scalable.
 
+### Add Item to Data Structure / State
+
+Earlier, we made functions so that we can fetch our items from the `ItemCtrl` and then we can use the `UICtrl` to insert them into the User Interface.
+
+Now, we want to work on being able to add a **meal** item with **calories**. That's going to happen through an **Event**.
+
+* Go down to the main `AppCtlr` and create a function expression called `loadEventListeners` to deal with our **Events**.
+
+When we call an **event**, we're going to need to do some **selecting** like querySelector('blah'), we did it earlier. We can call the `UISelectors` that we created earlier. But because it's currently a private method, the `UISelector`, we need to create a return to make it a public method so we can use it in `loadEventListeners`.
+
+```
+const UICtrl = (function() {
+
+  const UISelectors = {
+    itemList: '#item-list'
+  };
+
+  return {
+    populateItemList: function(items) {
+      // iterate through items, make each into a list item
+      let html = '';
+
+      items.forEach(function(item) {
+        // reference the <li> in html file
+        html += `
+          <li class="collection-item" id="item-${item.id}">
+          <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+          <a href="#" class="secondary-content">
+            <i class="edit-item fa fa-pencil"></i>
+          </a>
+          </li>
+        `;
+      });
+
+      // insert list items of <li> into <ul>
+      document.querySelector(UISelectors.itemList).innerHTML = html;
+    },
+    getSelectors: function() {
+      return UISelectors;
+    }
+  }
+})();
+```
+
+Now, we can use it in `AppCtrl`:
+
+```
+const AppCtrl = (function(ItemCtrl, UICtrl) {
+
+  // handle all events
+  const loadEventListeners = function() {
+    // get ui selectors
+    const UISelectors = UICtrl.getSelectors();
+  }
+
+  return {
+    init: function() {
+      console.log('Initializing app...');
+
+      // fetch items from state / data structure
+      const items = ItemCtrl.getItems();
+      console.log('This is from AppCtrl =>', items); // test fetch
+
+      // populate list with items with UICtrl
+      UICtrl.populateItemList(items);
+    }
+  }
+
+})(ItemCtrl, UICtrl);
+
+// initialize app
+AppCtrl.init();
+```
+
+Next, we're going to need an **event** to add an item to. Grab the `.add-btn` class from html.
+
+```
+const UICtrl = (function() {
+
+  const UISelectors = {
+    itemList: '#item-list',
+    addBtn: '.add-btn'
+  };
+```
+
+The **event listner** in `AppCtrl`:
+
+```
+const AppCtrl = (function(ItemCtrl, UICtrl) {
+
+  // handle all events
+  const loadEventListeners = function() {
+    // get ui selectors
+    const UISelectors = UICtrl.getSelectors();
+
+    // add 'item' event, the button
+    document.querySelector('UISelector.addBtn').addEventListener('click', itemAddSubmit);
+  }
+```
+
+Then, we need to create the logic for `itemAddSubmit`:
+
+<kbd>![alt text](img/elisteners00.png "screenshot")</kbd>
+
+### Create Alert for Form Input
+
+We tested via printing it out on the console, now we want to when we submit an item, is to first make sure that there's even an input there. Create an alerts for the user.
+
+Grab selectors for `item-name` and `item-calories` and add to UISelectors:
+```
+const UICtrl = (function() {
+
+  const UISelectors = {
+    itemList: '#item-list',
+    addBtn: '.add-btn',
+    itemNameInput: '#item-name',
+    itemCaloriesInput: 'item-calories'
+  };
+```
+
+In the public return method in the `UICtrl`, create `getItemInput` return function. Do `document.querySelector()` and also remember to add `value` bc that's what we need.
+
+```
+getItemInput: function() {
+  return {
+    name: document.querySelector(UISelectors.itemNameInput).value,
+    calories: document.querySelector(UISelectors.itemCaloriesInput).value
+  }
+},
+```
+
+In `AppCtrl`:
+
+```
+// add item submit function
+const itemAddSubmit = function(e) {
+  // console.log('Adding item test'); // test
+
+  // get form input from UICtrl
+  const input = UICtrl.getItemInput();
+  console.log(input); // test grab input value
+
+  // prevent default behavior
+  e.preventDefault();
+}
+```
+
+<kbd>![alt text](img/elisteners01.png "screenshot")</kbd>
+
+Handle a check if input is empty in `AppCtrl`:
+
+```
+const itemAddSubmit = function(e) {
+  // console.log('Adding item test'); // test
+
+  // get form input from UICtrl
+  const input = UICtrl.getItemInput();
+  // console.log(input); // test grab input value
+
+  // check handle if no value in input
+  if (input.name !== '' && input.calories !== '') {
+    // console.log(123); // test
+    // add item
+    const newItem = ItemCtrl.addItem(input.name, input.calories);
+  }
+
+  // prevent default behavior
+  e.preventDefault();
+}
+```
+
+Then in `ItemCtrl`:
+
+```
+return {
+  getItems: function() {
+    return data.items;
+  },
+  addItem: function(name, calories) {
+    // console.log(name, calories); // test 
+  },
+  getData: function() {
+    return data;
+  }
+}
+```
+
+### Need to Generate an `id` for each item
+
+We're going to take the `items` and try to make it kind of like an **auto-increment** for this example. Like if we're currently at `id=3` the next item input will be `id=4`. We also want to take the `calories` and **parse** it into a number bc when the user initially puts in into the input form, it's a string.
+
+We neeed to do a bit of logic here in `ItemCtrl`:
+
+```
+return {
+  getItems: function() {
+    return data.items;
+  },
+  addItem: function(name, calories) {
+    // console.log(name, calories); // test 
+
+    // create item 'id'
+    let ID = 0;
+    if (data.items.length > 0) {
+      // index to be length minus 1, get 'id' then add 1 to it
+      ID = data.items[data.items.length - 1].id + 1;
+    } else {
+      ID = 0;
+    }
+
+    // calories to number
+    calories = parseInt(calories);
+  },
+```
+
+Finally, we want to create a new `item`. We have an item constructor above, and when we want a new item, we have to say `new Item()` and then pass in the data.
+
+```
+return {
+  getItems: function() {
+    return data.items;
+  },
+  addItem: function(name, calories) {
+    // console.log(name, calories); // test 
+
+    // create item 'id'
+    let ID = 0;
+    if (data.items.length > 0) {
+      // index to be length minus 1, get 'id' then add 1 to it
+      ID = data.items[data.items.length - 1].id + 1;
+    } else {
+      ID = 0;
+    }
+
+    // calories to number
+    calories = parseInt(calories);
+
+    // create new Item
+    newItem = new Item(ID, name, calories);
+    // push it into the 'items' array of objects above
+    data.items.push(newItem);
+
+    return newItem;
+  },
+  ```
+
+  We haven't connected the adding new item to state to the UI yet, but we can check with `getData: function() {...}` from `ItemCtrl` to see if adding a new item works.
+
+<kbd>![alt text](img/elisteners02.png "screenshot")</kbd>
+
+There you go, it works, the new data can be added to state.
