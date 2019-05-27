@@ -119,7 +119,113 @@ const ItemCtrl = (function() {
 
 <kbd>![alt text](img/getdata00.png "screenshot")</kbd>
 
-Remember, `returns` with functions are public methods.
+Remember, `returns` with functions are **public methods**.
 
 ### App Controller - The Initializer for App
+
+This is the main controller, so insert the other controllers into the function and pass it where it's invoked.
+
+```
+const AppCtrl = (function(ItemCtrl, UICtrl) {
+
+  return {
+    init: function() {
+      console.log('Initializing app...');
+    }
+  }
+
+})(ItemCtrl, UICtrl);
+
+// initialize app
+AppCtrl.init();
+```
+
+### Get or Fetch Data in `ItemCtrl`
+
+Next, we want to be able to **fetch** the hard coded state / data items and display them on our application. Currently there's no list of meals and calories or total of calories.
+
+* These are ultimately going to come from Local Storage, which we'll work on later, but for now, we're going to to grab the data from our items data structure / state that was hard coded.
+
+* All we're doing is returning `data.items` in the public method inside `ItemCtrl`.
+
+```
+const ItemCtrl = (function() {
+  // item constructor
+  const Item = function(id, name, calories) {
+    this.id = id;
+    this.name = name;
+    this.calories = calories;
+  }
+
+  // create data structure / state
+  const data = {
+    // hard coded data to start with
+    items: [
+      {id: 0, name: 'Cookies', calories: 400},
+      {id: 1, name: 'Cake', calories: 500},
+      {id: 2, name: 'Apple', calories: 200}
+    ],
+    currentItem: null, 
+    totalCalories: 0
+  }
+  
+  return {
+    getItems: function() {
+      return data.items;
+    },
+    getData: function() {
+      return data;
+    }
+  }
+})();
+```
+
+<kbd>![alt text](img/getitems00.png "screenshot")</kbd>
+
+Then we need to go down to the `AppCtrl` and inside the public method in `return` and inside `init`, we want to call that. We're also going to put the result of that into a variable.
+
+```
+const AppCtrl = (function(ItemCtrl, UICtrl) {
+
+  return {
+    init: function() {
+      console.log('Initializing app...');
+      const items = ItemCtrl.getItems();
+
+      console.log('This is from AppCtrl =>', items);
+    }
+  }
+
+})(ItemCtrl, UICtrl);
+
+// initialize app
+AppCtrl.init();
+```
+
+<kbd>![alt text](img/getitems01.png "screenshot")</kbd>
+
+### Populate List with `UICtrl` inside AppCtrl
+
+We need to create `populateItemList` public method function, it'll take in `items` and we'll have to iterate through items, make each into a list item.
+
+* We'll define a variable called `html` and initialize it to nothing in the beginning.
+
+* Next, we'll loop through them with a `forEach()` method attached to `items` and then pass in `item`. We'll append it to `html` variable and use **template strings** so that we can put variables right inside of it.
+
+Each time the data is looped through, an `<li>` will be added to the `html` variable with the template we created.
+
+* Now, we need to take all the `<li>` and add it to the `<ul>`.
+
+<kbd>![alt text](img/uictrl00.png "screenshot")</kbd>
+<kbd>![alt text](img/uictrl01.png "screenshot")</kbd>
+
+Now you can see that the data is **dynamically** being added to the UI :) 
+
+<kbd>![alt text](img/uictrl02.png "screenshot")</kbd>
+
+With `#item-list` in `<ul>`, it can be changed at anytime, and we don't want to go all around our JavaScript to change it each individual one. So instead, we'll create an **object** called `UISelectors` and any class or id that we're going to use inside a **querySelector**, we'll put it in the Object.
+
+<kbd>![alt text](img/uiselectors00.png "screenshot")</kbd>
+
+This makes our code more efficient and more scalable.
 
