@@ -12,9 +12,9 @@ const ItemCtrl = (function() {
   const data = {
     // hard coded data to start with
     items: [
-      {id: 0, name: 'Cookies', calories: 400},
-      {id: 1, name: 'Cake', calories: 500},
-      {id: 2, name: 'Apple', calories: 200}
+      // {id: 0, name: 'Cookies', calories: 400},
+      // {id: 1, name: 'Cake', calories: 500},
+      // {id: 2, name: 'Apple', calories: 200}
     ],
     currentItem: null, 
     totalCalories: 0
@@ -89,6 +89,32 @@ const UICtrl = (function() {
         calories: document.querySelector(UISelectors.itemCaloriesInput).value
       }
     },
+    addListItem: function(item) {
+      // show the list
+      document.querySelector(UISelectors.itemList).style.display = 'block';
+      // create <li> element
+      const li = document.createElement('li');
+      // add class
+      li.className = 'collection-item';
+      // add ID (it's going to be dynamic)
+      li.id = `item-${item.id}`;
+      // add html (we just need what's inside li)
+      li.innerHTML = `
+        <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+        <a href="#" class="secondary-content">
+          <i class="edit-item fa fa-pencil"></i>
+        </a>
+      `;
+      // insert the item before the end
+      document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
+    },
+    clearFieldInputs: function() {
+      document.querySelector(UISelectors.itemNameInput).value = '';
+      document.querySelector(UISelectors.itemCaloriesInput).value = '';
+    },
+    hideUlLineList: function() {
+      document.querySelector(UISelectors.itemList).style.display = 'none';
+    },
     getSelectors: function() {
       return UISelectors;
     }
@@ -123,6 +149,12 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
       // console.log(123); // test
       // add item
       const newItem = ItemCtrl.addItem(input.name, input.calories);
+
+      // add newItem to UI list
+      UICtrl.addListItem(newItem);
+
+      // clear field inputs in UI
+      UICtrl.clearFieldInputs();
     }
 
     // prevent default behavior
@@ -137,8 +169,13 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
       const items = ItemCtrl.getItems();
       // console.log('This is from AppCtrl =>', items); // test fetch
 
-      // populate list with items with UICtrl
-      UICtrl.populateItemList(items);
+      // check if any items exist
+      if (items.length === 0) {
+        UICtrl.hideUlLineList();
+      } else {
+        // populate list with items with UICtrl
+        UICtrl.populateItemList(items);
+      }
 
       // load event listeners
       loadEventListeners();

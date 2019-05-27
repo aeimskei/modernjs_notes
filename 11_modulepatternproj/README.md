@@ -480,3 +480,59 @@ return {
 <kbd>![alt text](img/elisteners02.png "screenshot")</kbd>
 
 There you go, it works, the new data can be added to state.
+
+### Add Item to UI
+
+What we've got done so far is be able to submit form and add meal item with calories to the data structure / state and also created a id to the item with auto-increment logic.
+
+Now what we need to do is take the `newItem` and add it to the UI.
+
+In `UICtrl` we need to create a `addListItem` method.
+
+<kbd>![alt text](img/addtoui00.png "screenshot")</kbd>
+<kbd>![alt text](img/addtoui01.png "screenshot")</kbd>
+
+Next, we want to clear the fields. In `UCtrl` return,
+
+```
+clearFieldInputs: function() {
+  document.querySelector(UISelectors.itemNameInput).value = '';
+  document.querySelector(UISelectors.itemCaloriesInput).value = '';
+},
+```
+
+and in `AppCtrl` in `itemAddSubmit` function,
+
+```
+// clear field inputs in UI
+UICtrl.clearFieldInputs();
+```
+
+Now that we can add data to the form and get it stored to the state, we can remove the hard coded data.
+
+### Hide `<ul>` line
+
+<kbd>![alt text](img/hideul00.png "screenshot")</kbd>
+
+In `UICtrl`,
+
+```
+hideUlLineList: function() {
+  document.querySelector(UISelectors.itemList).style.display = 'none';
+},
+```
+
+Then down in `init` in `AppCtrl`,
+
+<kbd>![alt text](img/hideul01.png "screenshot")</kbd>
+
+We need to go back up to `addListItem` in `UICtrl` to not hide the `<li>` into the `<ul>`,
+
+```
+addListItem: function(item) {
+  // show the list
+  document.querySelector(UISelectors.itemList).style.display = 'block';
+```
+
+## Logic for Total Calories
+
