@@ -536,3 +536,30 @@ addListItem: function(item) {
 
 ## Logic for Total Calories
 
+This is done in the main `AppCtrl` in `itemAddSubmit` function. Do it right before we clear the input field.
+
+```
+const totalCalories = ItemCtrl.getTotalCalories();
+```
+
+Then, we need to go up to `ItemCtrl` to create `getTotalCalories()` method. What we have to do here is iterate / loop through the items and then add the `calories`.
+
+* Create a variable and intialize it at `0` first.
+* Then, we need access our `data`, get `items` and loop through with `forEach()` method.
+
+<kbd>![alt text](img/totalcalories00.png "screenshot")</kbd>
+
+Back in `AppCtrl` after `totalCalories` in `itemAddSubmit`,
+
+```
+// Get total calories
+const totalCalories = ItemCtrl.getTotalCalories();
+
+// Add total calories to UI
+UICtrl.showTotalCalories(totalCalories);
+```
+
+Now go back to `UICtrl` again, and below `hideUlLineList`, create the `showTotalCalories` method that takes in the `totalCalories`. We need to also grab the `<span>` with class of `total-calories` to the `UISelector`.
+
+Next, we'll work with the **state**. We want to application to be able to change **state** before we work on the edit and submission.
+
