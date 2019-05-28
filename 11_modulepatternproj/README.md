@@ -563,3 +563,210 @@ Now go back to `UICtrl` again, and below `hideUlLineList`, create the `showTotal
 
 Next, we'll work with the **state**. We want to application to be able to change **state** before we work on the edit and submission.
 
+## Update Item, Edit State
+
+When we click on the the **edit** icon to edit an item, we want to go into an **Edit State** where it shows the **Update Button**, **Delete Button** and hides the Add Meal button.
+
+First, go into the `UICtrl` and create another method called `clearEditState`. In the function, we need to make sure that the inputs are clear, which we already have a `clearFieldInputs` function, so use that. Also, go back to html file to uncomment the buttons.
+
+Next, we need to add to the `UISelectors` the button's classes `.update-btn` and `.delete-btn` and `.back-btn` in `UICtrl`:
+
+```
+const UISelectors = {
+  itemList: '#item-list',
+  addBtn: '.add-btn',
+  updateBtn: '.update-btn',
+  deleteBtn: '.delete-btn',
+  backBtn: '.back-btn',
+  itemNameInput: '#item-name',
+  itemCaloriesInput: '#item-calories',
+  totalCalories: '.total-calories',
+};
+```
+## Hide Edit, Delete and Back Buttons When Not in Edit State
+
+Need to hide the Update Button, Delete Button and Back Button when we're not in the Edit State. Also, make sure the Add Button is shown though inside `UICtrl` return function.
+
+```
+clearEditState: function() {
+  UICtrl.clearFieldInputs();
+  // hide edit, delete and back buttons
+  document.querySelector(UISelectors.updateBtn).style.display = 'none';
+  document.querySelector(UISelectors.deleteBtn).style.display = 'none';
+  document.querySelector(UISelectors.backBtn).style.display = 'none';
+  document.querySelector(UISelectors.addBtn).style.display = 'inline';
+},
+```
+
+We want this called in the `init` in `AppCtrl`.
+
+```
+return {
+  init: function() {
+    // console.log('Initializing app...'); // test
+
+    // clear edit state / set initial state
+    UICtrl.clearEditState();
+```
+
+## Click Event on Edit Icon with Event Delegation
+
+Since the edit pencil icon is added in dynamically, we have to use **Event delegation** because we can't target the icon button directly since is wasn't there in the first place.
+
+We need to get the **parent element** and then do a check inside to make sure its the button that we want to click.
+
+In `AppCtrl`, go to the `loadEventListeners` and create an **event listener** for the edit icon button for click event. We're going to need to target the parent element, which is the list `<ul id="item-list">` which we've already gave a name in the `UISelectors` as `itemList`.
+
+```
+const AppCtrl = (function(ItemCtrl, UICtrl) {
+
+  // handle all events
+  const loadEventListeners = function() {
+    // get ui selectors
+    const UISelectors = UICtrl.getSelectors();
+
+    // add 'item' event, the button
+    document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
+
+    // edit icon button click event
+    document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
+  }
+  ```
+
+  In `AppCtrl` below `itemAddSubmit`, create `itemUpdateSubmit` function and target the class `edit-item`:
+
+  ```
+  const itemUpdateSubmit = function(e) {
+    if (e.target.classList.contains('edit-item')) {
+      console.log('clicked on the class edit-item'); // test edit icon
+    }
+
+    e.preventDefault();
+  }
+  ```
+
+  We want to add this selected item we clicked to the `currentItem` in **state** which is initially set to `null` in the `ItemCtrl`. We want to fill that `null` with the data of the item selected when user clicks on the Edit icon.
+
+  ```
+    // create data structure / state
+  const data = {
+    // hard coded data to start with
+    items: [],
+    currentItem: null, 
+    totalCalories: 0
+  }
+```
+
+### Getting to Parent Element and the id
+
+In `AppCtrl`:
+
+```
+// update item submit
+const itemUpdateSubmit = function(e) {
+  if (e.target.classList.contains('edit-item')) {
+    // console.log('clicked on the class edit-item'); // test edit icon
+
+    // get listItem ID from <li> the parent that has id
+    const listId = e.target.parentNode.parentNode.id;
+    // console.log(listId); // test prints item-0
+
+    // we need to just get the id, not the whole item-0
+    // break into an array, split at the dash
+    const listIdArr = listId.split('-');
+    // console.log(listIdArr); // test prints ["item", "0"]
+    // get only the id, not first index with "item"
+    const id = parseInt(listIdArr[1]);
+    // console.log(id); // test prints 0
+
+    // get the entire object of item
+    const itemToEdit = ItemCtrl.getItemById(id);
+  }
+  e.preventDefault();
+}
+```
+
+Then, go up to the `ItemCtrl` and create `getItemById`. Loop through the items and match the `id`.
+
+```
+getItemById: function(id) {
+  // create temporary variable calle found
+  let found = null;
+  // loop through items
+  data.items.forEach(function(item) {
+    // match the ids
+    if (item.id === id) {
+      found = item;
+    }
+  });
+  return found;
+},
+```
+
+You get the entire object when you click on it.
+
+### Grab Info of Selected Item and Fill the Form for Edit State
+
+<kbd>![alt text](img/editstate00.png "screenshot")</kbd>
+
+Next, set `ItemCtrl.setCurrentItem(itemToEdit);` into  `itemUpdateSubmit` function in `AppCtrl`. Afterwards, go up to the `ItemCtrl` and create the logic for the `setCurrentItem` function.
+
+<kbd>![alt text](img/editstate01.png "screenshot")</kbd>
+
+You can see that the `curretItem` is now filled.
+
+The last thing that we want to do here, is that when we click the **edit icon**, is to show the **Edit State** and put those fields in the input form.
+
+So, go to the `AppCtrl` below where we have ```setCurrentItem```, 
+
+```
+// add item to form
+UICtrl.addItemToForm();
+```
+
+Then, go up to the `UICtrl`, under the `clearFieldInputs` and create `addItemToForm` method. Do querySelector to the fields and assign the value to `ItemCtrl.getCurrentItem().name` and `ItemCtrl.getCurrentItem().calories`.
+
+
+```
+addItemToForm: function() {
+  document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name;
+  document.querySelector(UISelectors.itemCaloriesInput).value = ItemCtrl.getCurrentItem().calories;
+},
+```
+
+Right now, it doesn't know what `getCurrentItem` is, so we need to create the logic for that. Put it under `setCurrentItem` in `ItemCtrl`.
+
+```
+getCurrentItem: function() {
+  return data.currentItem;
+},
+```
+
+<kbd>![alt text](img/editstate02.png "screenshot")</kbd>
+
+### Show Edit State with the Buttons
+
+Go back to `addItemToForm` in the `UICtrl` and call `UICtrl.showEditState()`. We need to create the logic for `showEditState()`. It's similar to `clearEditState()` that we've alreday created.
+
+```
+addItemToForm: function() {
+  document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name;
+  document.querySelector(UISelectors.itemCaloriesInput).value = ItemCtrl.getCurrentItem().calories;
+  // show edit state
+  UICtrl.showEditState();
+},
+```
+
+Then, create the logic for `showEditState`:
+
+```
+showEditState: function() {
+  document.querySelector(UISelectors.updateBtn).style.display = 'inline';
+  document.querySelector(UISelectors.deleteBtn).style.display = 'inline';
+  document.querySelector(UISelectors.backBtn).style.display = 'inline';
+  document.querySelector(UISelectors.addBtn).style.display = 'none';
+},
+```
+
+<kbd>![alt text](img/editstate03.png "screenshot")</kbd>
+
