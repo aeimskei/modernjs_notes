@@ -104,6 +104,7 @@ const UICtrl = (function() {
 
   const UISelectors = {
     itemList: '#item-list',
+    listItems: '#item-list li',
     addBtn: '.add-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
@@ -157,6 +158,26 @@ const UICtrl = (function() {
       `;
       // insert the item before the end
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
+    },
+    updateListItem: function(item) {
+      // get list items from DOM to get a node list
+      let listItems = document.querySelectorAll(UISelectors.listItems);
+      // convert node list to array
+      listItems = Array.from(listItems);
+      // loop through listItems
+      listItems.forEach(function(listItem) {
+        // we want to get the id from item with getAttribute
+        const itemID = listItem.getAttribute('id');
+        // if match, then we want to update
+        if (itemID === `item-${item.id}`) {
+          document.querySelector(`#${itemID}`).innerHTML = `
+            <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+            <a href="#" class="secondary-content">
+              <i class="edit-item fa fa-pencil"></i>
+            </a>
+          `;
+        }
+      });
     },
     clearFieldInputs: function() {
       document.querySelector(UISelectors.itemNameInput).value = '';
@@ -295,7 +316,16 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     // get item input
     const input = UICtrl.getItemInput();
     // update item
-    const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+    const updateItem = ItemCtrl.updateItem(input.name, input.calories);
+    // update the UI
+    UICtrl.updateListItem(updateItem);
+
+    // get total calories through ItemCtrl
+    const totalCalories = ItemCtrl.getTotalCalories();
+    // add total calories to UI
+    UICtrl.showTotalCalories(totalCalories);
+    // clear edit state
+    UICtrl.clearEditState();
 
     e.preventDefault();
   }

@@ -808,7 +808,7 @@ document.addEventListener('keypress', function(e) {
 });
 ```
 
-### Get Item Input
+### Get Item Input and Update State's Data
 
 Use the `UICtrl` method of `getItemInput`, use that in `AppCtrl`,
 
@@ -820,7 +820,7 @@ const itemUpdateSubmit = function(e) {
   // get item input
   const input = UICtrl.getItemInput();
   // update item
-  const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+  const updateItem = ItemCtrl.updateItem(input.name, input.calories);
 
   e.preventDefault();
 }
@@ -831,3 +831,92 @@ Next, go back up to `ItemCtrl` and create `updateItem` method,
 <kbd>![alt text](img/editstate04.png "screenshot")</kbd>
 
 This updates only in the data structure, not the UI yet because we haven't written the logic for the UI yet.
+
+### Update the UI with Item Edits
+
+In `AppCtrl`, 
+
+```
+// update item submit
+const itemUpdateSubmit = function(e) {
+  // console.log('testing update button'); // test
+
+  // get item input
+  const input = UICtrl.getItemInput();
+  // update item
+  const updateItem = ItemCtrl.updateItem(input.name, input.calories);
+  // update the UI
+  UICtrl.updateListItem(updateItem);
+
+  e.preventDefault();
+}
+```
+
+Then go to `UICtrl` and create `updateListItem` method in the `addListItem`. We want to grab all the `<li>` from the DOM. We need to include `<li>` in the `UISelectors`. We need to call from the parent element of `<ul id="item-list"` and then all the `li`:
+
+```
+const UISelectors = {
+  itemList: '#item-list',
+  listItems: '#item-list li',
+  addBtn: '.add-btn',
+  updateBtn: '.update-btn',
+  deleteBtn: '.delete-btn',
+  backBtn: '.back-btn',
+  itemNameInput: '#item-name',
+  itemCaloriesInput: '#item-calories',
+  totalCalories: '.total-calories',
+};
+```
+
+Go back down to `UICtrl` and create `updateListItem` method,
+
+```
+  updateListItem: function(item) {
+    // get list items from DOM to get a node list
+    let listItems = document.querySelectorAll(UISelectors.listItems);
+    // convert node list to array
+    listItems = Array.from(listItems);
+    // loop through listItems
+    listItems.forEach(function(listItem) {
+      // we want to get the id from item with getAttribute
+      const itemID = listItem.getAttribute('id');
+      // if match, then we want to update
+      if (itemID === `item-${item.id}`) {
+        document.querySelector(`#${itemID}`).innerHTML = `
+          <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+          <a href="#" class="secondary-content">
+            <i class="edit-item fa fa-pencil"></i>
+          </a>
+        `;
+      }
+    });
+  },
+```
+
+### Update Total Calories
+
+Next, we need to update the **Total Calories** in `AppCtrl`,
+
+```
+// update item submit
+const itemUpdateSubmit = function(e) {
+  // console.log('testing update button'); // test
+
+  // get item input
+  const input = UICtrl.getItemInput();
+  // update item
+  const updateItem = ItemCtrl.updateItem(input.name, input.calories);
+  // update the UI
+  UICtrl.updateListItem(updateItem);
+
+  // get total calories through ItemCtrl
+  const totalCalories = ItemCtrl.getTotalCalories();
+  // add total calories to UI
+  UICtrl.showTotalCalories(totalCalories);
+  // clear edit state
+  UICtrl.clearEditState();
+
+  e.preventDefault();
+}
+```
+There you go, it's not updating the **Total Calories** as well and also clearing out the Edit State afterwards.
