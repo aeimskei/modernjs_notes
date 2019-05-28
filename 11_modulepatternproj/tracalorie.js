@@ -58,6 +58,21 @@ const ItemCtrl = (function() {
       });
       return found;
     },
+    updateItem: function(name, calories) {
+      // turn calories to number
+      calories = parseInt(calories);
+      let foun = null;
+      // loop through items
+      data.items.forEach(function(item) {
+        // if selected item id is the same one found in state's data
+        if (item.id === data.currentItem.id) {
+          item.name = name;
+          item.calories = calories;
+          found = item;
+        }
+      });
+      return found;
+    },
     setCurrentItem: function(item) {
       data.currentItem = item;
     },
@@ -277,7 +292,10 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
   const itemUpdateSubmit = function(e) {
     // console.log('testing update button'); // test
 
-
+    // get item input
+    const input = UICtrl.getItemInput();
+    // update item
+    const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
 
     e.preventDefault();
   }

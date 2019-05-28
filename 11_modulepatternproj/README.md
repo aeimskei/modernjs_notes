@@ -808,3 +808,26 @@ document.addEventListener('keypress', function(e) {
 });
 ```
 
+### Get Item Input
+
+Use the `UICtrl` method of `getItemInput`, use that in `AppCtrl`,
+
+```
+// update item submit
+const itemUpdateSubmit = function(e) {
+  // console.log('testing update button'); // test
+
+  // get item input
+  const input = UICtrl.getItemInput();
+  // update item
+  const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+
+  e.preventDefault();
+}
+```
+
+Next, go back up to `ItemCtrl` and create `updateItem` method,
+
+<kbd>![alt text](img/editstate04.png "screenshot")</kbd>
+
+This updates only in the data structure, not the UI yet because we haven't written the logic for the UI yet.
