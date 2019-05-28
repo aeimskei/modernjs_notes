@@ -1071,5 +1071,86 @@ const clearAllItemsClick = function() {
 Then go back up to `UICtrl` and create `removeItems` method:
 
 ```
+removeItems: function() {
+let listItems = document.querySelectorAll(UISelectors.listItems);
+
+// turn node list into array
+listItems = Array.from(listItems);
+// iterate
+listItems.forEach(function(item) {
+  item.remove();
+});
+```
+
+In `AppCtrl`:
 
 ```
+// clear items event
+const clearAllItemsClick = function() {
+  // delete all items from data structure
+  ItemCtrl.clearAllItems();
+
+  // update total calories
+  const totalCalories = ItemCtrl.getTotalCalories();
+  UICtrl.showTotalCalories(totalCalories);
+
+  // remove from UI
+  UICtrl.removeItems();
+
+  // hide the <ul>
+  UICtrl.hideUlLineList();
+}
+```
+
+## Persist Data to Local Storage
+
+We want to be able to persist data in Local Storage. Create `StorageCtrl` at the top of js file.
+
+### Store Items in Local Storage
+
+When we add a meal item, that should be put into Local Storage, so we need a method, call it `storeItem` in our `StorageCtrl`. 
+
+We want to insert our storage into our main `AppCtrl`, like what we did for `ItemCtrl` and `UICtrl`.
+
+```
+const AppCtrl = (function(ItemCtrl, StorageCtrl, UICtrl) {
+  ...
+})(ItemCtrl, StorageCtrl, UICtrl);
+```
+
+Where we want to call our `storeItem` in `AppCtrl` in the `addItemSubmit` function.
+
+```
+const itemAddSubmit = function(e) {
+  const input = UICtrl.getItemInput();
+
+  const totalCalories = ItemCtrl.getTotalCalories();
+  UICtrl.showTotalCalories(totalCalories);
+
+  if (input.name !== '' && input.calories !== '') {
+    const newItem = ItemCtrl.addItem(input.name, input.calories);
+    UICtrl.addListItem(newItem);
+
+    const totalCalories = ItemCtrl.getTotalCalories();
+    UICtrl.showTotalCalories(totalCalories);
+
+    // store in Local Storage
+    StorageCtrl.storeItem(newItem);
+
+    UICtrl.clearFieldInputs();
+  }
+
+  e.preventDefault();
+}
+```
+
+Remember with Local Storage, we call `localStorage` and then `setItem()` with whatever we want to put inside. But, Local Storage can only hold strings, so before we put something in, we have to turn it into a string using `JSON.stringify`. Then, we pull it out, we need to turn it back into Object with `JSON.parse`.
+
+So, we need to check and see if there are any items:
+
+<kbd>![alt text](img/localstorage00.png "screenshot")</kbd>
+
+We haven't done the logic for UI yet, but you can use Chrome DevTools in the Application tab, find Local Storage, you'll see our added meal is stored there.
+
+<kbd>![alt text](img/localstorage01.png "screenshot")</kbd>
+

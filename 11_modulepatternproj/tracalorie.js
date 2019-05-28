@@ -1,3 +1,30 @@
+// ====================== storage controller ======================
+
+const StorageCtrl = (function() {
+  return {
+    // store items into local storage
+    storeItem: function(item) {
+      let items = [];
+      // check to see if there's an item's item in LS
+      if (localStorage.getItem('items') === null) {
+        items = [];
+        // push new item
+        items.push(item)
+        // set Local Storage
+        localStorage.setItem('items', JSON.stringify(items));
+      } else {
+        // if there is something in there, get it
+        items = JSON.parse(localStorage.getItem('items'));
+        // push new item
+        items.push(item);
+        // reset Local Storage
+        localStorage.setItem('items', JSON.stringify(items));
+      }
+    }
+  }
+
+})();
+
 // ====================== item controller ======================
 
 const ItemCtrl = (function() {
@@ -248,7 +275,7 @@ const UICtrl = (function() {
 // This is the main controller, so insert the other controllers
 // into the function and pass it where it's invoked.
 
-const AppCtrl = (function(ItemCtrl, UICtrl) {
+const AppCtrl = (function(ItemCtrl, StorageCtrl, UICtrl) {
 
   // handle all events
   const loadEventListeners = function() {
@@ -308,6 +335,9 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
       const totalCalories = ItemCtrl.getTotalCalories();
       // Add total calories to UI
       UICtrl.showTotalCalories(totalCalories);
+
+      // store in Local Storage
+      StorageCtrl.storeItem(newItem);
 
       // clear field inputs in UI
       UICtrl.clearFieldInputs();
@@ -430,7 +460,7 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     }
   }
 
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 // initialize app
 AppCtrl.init();
