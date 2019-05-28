@@ -920,3 +920,112 @@ const itemUpdateSubmit = function(e) {
 }
 ```
 There you go, it's not updating the **Total Calories** as well and also clearing out the Edit State afterwards.
+
+### Back Button, Delete and Clear Items
+
+## Back Button
+
+For the **Back Button**, all we need it to do is clear out the Edit State out. We already have a `UICtrl` method that's made called `clearEditState`.
+
+So, in `AppCtrl` in `loadEventListeners`:
+
+```
+// back button click event
+document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState);
+```
+
+## Delete Button
+
+In `AppCtrl` in `loadEventListeners`:
+
+```
+// delete button click event
+document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
+```
+
+Then down in `AppCtrl` below `itemUpdateSubmit`, create the `itemDeleteSubmit` function. We need to get the `id` that we need to delete based on the current item selected.
+
+```
+// delete button
+const itemDeleteSubmit = function(e) {
+  // console.log('testing delete button'); // test
+
+  // get current item
+  const currentItem = ItemCtrl.getCurrentItem();
+  // delete from data structure
+  ItemCtrl.deleteItem(currentItem.id);
+
+  e.preventDefault();
+};
+```
+
+Then, go up to the `ItemCtrl`, and create `deleteItem` method to delete from the state's data structure:
+
+```
+deleteItem: function(id) {
+  // get ids
+  const ids = data.items.map(function(item) {
+    return item.id;
+  });
+  // get the index
+  const index = ids.indexOf(id);
+  // splice it out of array, remove item
+  data.items.splice(index, 1);
+},
+```
+
+### Delete from UI
+
+Finally, delete the item from the UI in `AppCtrl`:
+
+```
+  // delete button event
+  const itemDeleteSubmit = function(e) {
+    // console.log('testing delete button'); // test
+
+    // get current item
+    const currentItem = ItemCtrl.getCurrentItem();
+    // delete from data structure
+    ItemCtrl.deleteItem(currentItem.id);
+    // delete form ui
+    UICtrl.deleteListItem(currentItem.id);
+
+    e.preventDefault();
+  };
+```
+
+Then, in `UICtrl`, create `deleteListItem` method:
+
+```
+  deleteListItem: function(id) {
+    const itemID = `#item-${id}`;
+    const item = document.querySelector(itemID);
+    item.remove();
+  },
+```
+
+After deleting, we need to Clear State and then update Total Calories in `AppCtrl`.
+
+```
+// delete button event
+const itemDeleteSubmit = function(e) {
+  // console.log('testing delete button'); // test
+
+  // get current item
+  const currentItem = ItemCtrl.getCurrentItem();
+  // delete from data structure
+  ItemCtrl.deleteItem(currentItem.id);
+  // delete form ui
+  UICtrl.deleteListItem(currentItem.id);
+
+  // get total calories through ItemCtrl
+  const totalCalories = ItemCtrl.getTotalCalories();
+  // add total calories to UI
+  UICtrl.showTotalCalories(totalCalories);
+  // clear edit state
+  UICtrl.clearEditState();
+
+  e.preventDefault();
+};
+```
+

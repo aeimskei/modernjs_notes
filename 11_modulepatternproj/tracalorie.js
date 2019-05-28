@@ -73,6 +73,16 @@ const ItemCtrl = (function() {
       });
       return found;
     },
+    deleteItem: function(id) {
+      // get ids
+      const ids = data.items.map(function(item) {
+        return item.id;
+      });
+      // get the index
+      const index = ids.indexOf(id);
+      // splice it out of array, remove item
+      data.items.splice(index, 1);
+    },
     setCurrentItem: function(item) {
       data.currentItem = item;
     },
@@ -179,6 +189,11 @@ const UICtrl = (function() {
         }
       });
     },
+    deleteListItem: function(id) {
+      const itemID = `#item-${id}`;
+      const item = document.querySelector(itemID);
+      item.remove();
+    },
     clearFieldInputs: function() {
       document.querySelector(UISelectors.itemNameInput).value = '';
       document.querySelector(UISelectors.itemCaloriesInput).value = '';
@@ -242,6 +257,12 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
 
     // update item event
     document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
+
+    // delete button click event
+    document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
+
+    // back button click event
+    document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState);
   }
 
   // add item submit function
@@ -329,6 +350,27 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
 
     e.preventDefault();
   }
+
+  // delete button event
+  const itemDeleteSubmit = function(e) {
+    // console.log('testing delete button'); // test
+
+    // get current item
+    const currentItem = ItemCtrl.getCurrentItem();
+    // delete from data structure
+    ItemCtrl.deleteItem(currentItem.id);
+    // delete form ui
+    UICtrl.deleteListItem(currentItem.id);
+
+    // get total calories through ItemCtrl
+    const totalCalories = ItemCtrl.getTotalCalories();
+    // add total calories to UI
+    UICtrl.showTotalCalories(totalCalories);
+    // clear edit state
+    UICtrl.clearEditState();
+
+    e.preventDefault();
+  };
 
   return {
     init: function() {
