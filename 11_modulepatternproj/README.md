@@ -1029,3 +1029,47 @@ const itemDeleteSubmit = function(e) {
 };
 ```
 
+## Clear All Button
+
+When we click that, everything should disappear from the list. We need to create an event listener for that Clear All button click. Need to create `UISelector`, grab `.clear-btn` and place into it.
+
+In `AppCtrl` create an event listener for clear button:
+
+```
+// clear button click event
+document.querySelector(UISelectors.clearBtn).addEventListener('click', clearAllItemsClick);
+```
+
+Then create `clearAllItemsClick` function in `AppCtrl`:
+
+```
+  // delete all items from data structure
+  ItemCtrl.clearAllItems();
+}
+```
+
+Go back up to `ItemCtrl` and create a method for `clearAllItems`:
+
+```
+clearAllItems: function() {
+  data.items = [];
+},
+```
+
+In `AppCtrl` add code to remove from UI:
+
+```
+const clearAllItemsClick = function() {
+  // delete all items from data structure
+  ItemCtrl.clearAllItems();
+
+  // remove from UI
+  UICtrl.removeItems();
+}
+```
+
+Then go back up to `UICtrl` and create `removeItems` method:
+
+```
+
+```
