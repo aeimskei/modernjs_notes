@@ -770,3 +770,41 @@ showEditState: function() {
 
 <kbd>![alt text](img/editstate03.png "screenshot")</kbd>
 
+### Fix Naming of `itemUpdateSubmit` to `itemEditClick`
+
+In `AppCtrl`, we need to change the naming,
+
+```
+// edit icon button click event
+document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
+```
+and
+
+```
+// update item submit
+const itemUpdateSubmit = function(e) {
+if (e.target.classList.contains('edit-item')) {
+```
+
+Because haven't created the logic to update the state data. When we click the Update Button, that will trigger the change and update in the data of state.
+
+Go to our **event listeners** in our `AppCtrl`, and create the **update item event** with,
+
+```
+// update item event
+document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
+```
+
+### Disable Enter Keypress on Form
+
+Now, go down to under `itemEditClick` function. We also need to account when people hit enter for the form, it's going to automatically add, so we'll need to disable that. Go back up to `loadEventListeners` to disable enter in `AppCtrl`:
+
+```
+document.addEventListener('keypress', function(e) {
+  if (e.keyCode === 13 || e.which === 13) {
+    e.preventDefault();
+    return false;
+  }
+});
+```
+

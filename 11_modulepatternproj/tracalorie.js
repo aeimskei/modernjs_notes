@@ -193,8 +193,19 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     // add 'item' event, the button
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
 
+    // disable the submit on enter key
+    document.addEventListener('keypress', function(e) {
+      if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
     // edit icon button click event
-    document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
+    document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
+
+    // update item event
+    document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
   }
 
   // add item submit function
@@ -232,8 +243,8 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     e.preventDefault();
   }
 
-  // update item submit
-  const itemUpdateSubmit = function(e) {
+  // click edit item
+  const itemEditClick = function(e) {
     if (e.target.classList.contains('edit-item')) {
       // console.log('clicked on the class edit-item'); // test edit icon
 
@@ -259,6 +270,15 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
       // add item to form
       UICtrl.addItemToForm();
     }
+    e.preventDefault();
+  }
+
+  // update item submit
+  const itemUpdateSubmit = function(e) {
+    // console.log('testing update button'); // test
+
+
+
     e.preventDefault();
   }
 
