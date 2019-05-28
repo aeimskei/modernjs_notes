@@ -1184,3 +1184,56 @@ const data = {
 ```
 
 kbd>![alt text](img/localstorage02.png "screenshot")</kbd>
+
+## Delete & Clear Data from Local Storage
+
+In `AppCtrl` in the `itemUpdateSubmit` method, right before we clear the Edit State, we're going to update Local Storage. Call `StorageCtrl.updateItemStorage();` and pass in the `updatedItem`.
+
+```
+StorageCtrl.updateItemStorage(updateItem);
+```
+
+We need to create the `updateItemStorage` function/method up in the `StorageCtrl`.
+
+```
+updateItemStorage: function(updatedItem) {
+  // pull out of Local Storage
+  let items = JSON.parse(localStorage.getItem('items'));
+  // loop through the items
+  items.forEach(function(item, index) {
+    if (updatedItem.id === item.id) {
+      // splice one and then replace it with updateItem
+      items.splice(index, 1, updatedItem);
+    }
+  })
+  // then reset Local Storage
+  localStorage.setItem('items', JSON.stringify(items));
+}
+```
+
+### Delete Data from Local Storage
+
+Go down to `itemDeleteSubmit` in `AppCtrl` and call:
+
+```
+// delete from Local Storage
+StorageCtrl.deleteItemFromStorage(currentItem.id);
+```
+
+Then we have to go up to `StorageCtrl` and create that `deleteItemFromStorage` method.
+
+```
+deleteItemFromStorage: function(id) {
+  // pull out of Local Storage
+  let items = JSON.parse(localStorage.getItem('items'));
+  // loop through the items
+  items.forEach(function(item, index) {
+    if (id === item.id) {
+      // splice one and remove
+      items.splice(index, 1);
+    }
+  })
+  // then reset Local Storage
+  localStorage.setItem('items', JSON.stringify(items));
+}
+```

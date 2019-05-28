@@ -31,6 +31,32 @@ const StorageCtrl = (function() {
         items = JSON.parse(localStorage.getItem('items'));
         return items;
       }
+    },
+    updateItemStorage: function(updatedItem) {
+      // pull out of Local Storage
+      let items = JSON.parse(localStorage.getItem('items'));
+      // loop through the items
+      items.forEach(function(item, index) {
+        if (updatedItem.id === item.id) {
+          // splice one and then replace it with updateItem
+          items.splice(index, 1, updatedItem);
+        }
+      })
+      // then reset Local Storage
+      localStorage.setItem('items', JSON.stringify(items));
+    },
+    deleteItemFromStorage: function(id) {
+      // pull out of Local Storage
+      let items = JSON.parse(localStorage.getItem('items'));
+      // loop through the items
+      items.forEach(function(item, index) {
+        if (id === item.id) {
+          // splice one and remove
+          items.splice(index, 1);
+        }
+      })
+      // then reset Local Storage
+      localStorage.setItem('items', JSON.stringify(items));
     }
   }
 })();
@@ -403,6 +429,10 @@ const AppCtrl = (function(ItemCtrl, StorageCtrl, UICtrl) {
     const totalCalories = ItemCtrl.getTotalCalories();
     // add total calories to UI
     UICtrl.showTotalCalories(totalCalories);
+
+    // update Local Storage
+    StorageCtrl.updateItemStorage(updateItem);
+
     // clear edit state
     UICtrl.clearEditState();
 
@@ -424,6 +454,10 @@ const AppCtrl = (function(ItemCtrl, StorageCtrl, UICtrl) {
     const totalCalories = ItemCtrl.getTotalCalories();
     // add total calories to UI
     UICtrl.showTotalCalories(totalCalories);
+
+    // delete from Local Storage and pass in id
+    StorageCtrl.deleteItemFromStorage(currentItem.id);
+
     // clear edit state
     UICtrl.clearEditState();
 
