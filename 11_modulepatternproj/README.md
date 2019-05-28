@@ -1154,3 +1154,33 @@ We haven't done the logic for UI yet, but you can use Chrome DevTools in the App
 
 <kbd>![alt text](img/localstorage01.png "screenshot")</kbd>
 
+### Get Data from Local Storage
+
+In `StorageCtrl` create a method to get data from Local Storage:
+
+```
+getItemsFromStorage: function() {
+  let items;
+  // check to see if there are any items stored
+  if (localStorage.getItem('items' === null)) {
+    // if nothing is there, items will be set to nothing
+    items = [];
+  } else {
+    items = JSON.parse(localStorage.getItem('items'));
+    return items;
+  }
+}
+```
+
+Next, we want to call `getItemsFromStorage` down in the `ItemCtrl`:
+
+```
+// create data structure / state
+const data = {
+  items: StorageCtrl.getItemsFromStorage(),
+  currentItem: null, 
+  totalCalories: 0
+}
+```
+
+kbd>![alt text](img/localstorage02.png "screenshot")</kbd>

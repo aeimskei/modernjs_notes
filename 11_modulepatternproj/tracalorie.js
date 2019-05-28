@@ -4,7 +4,7 @@ const StorageCtrl = (function() {
   return {
     // store items into local storage
     storeItem: function(item) {
-      let items = [];
+      let items;
       // check to see if there's an item's item in LS
       if (localStorage.getItem('items') === null) {
         items = [];
@@ -20,9 +20,19 @@ const StorageCtrl = (function() {
         // reset Local Storage
         localStorage.setItem('items', JSON.stringify(items));
       }
+    },
+    getItemsFromStorage: function() {
+      let items;
+      // check to see if there are any items stored
+      if (localStorage.getItem('items' === null)) {
+        // if nothing is there, items will be set to nothing
+        items = [];
+      } else {
+        items = JSON.parse(localStorage.getItem('items'));
+        return items;
+      }
     }
   }
-
 })();
 
 // ====================== item controller ======================
@@ -38,11 +48,12 @@ const ItemCtrl = (function() {
   // create data structure / state
   const data = {
     // hard coded data to start with
-    items: [
-      // {id: 0, name: 'Cookies', calories: 400},
-      // {id: 1, name: 'Cake', calories: 500},
-      // {id: 2, name: 'Apple', calories: 200}
-    ],
+    // items: [
+    //   // {id: 0, name: 'Cookies', calories: 400},
+    //   // {id: 1, name: 'Cake', calories: 500},
+    //   // {id: 2, name: 'Apple', calories: 200}
+    // ],
+    items: StorageCtrl.getItemsFromStorage(),
     currentItem: null, 
     totalCalories: 0
   }
