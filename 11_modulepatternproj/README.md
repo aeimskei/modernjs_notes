@@ -1237,3 +1237,16 @@ deleteItemFromStorage: function(id) {
   localStorage.setItem('items', JSON.stringify(items));
 }
 ```
+
+## Clear All from Local Storage
+
+Create another method in `StorageCtrl` to handle Clear All, call it `clearAllItemsFromStorage`:
+
+```
+clearAllItemsFromStorage: function() {
+  localStorage.removeItem('items');
+}
+```
+
+Then call it in `AppCtrl`:
+

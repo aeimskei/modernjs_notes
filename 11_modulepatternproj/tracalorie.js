@@ -57,6 +57,9 @@ const StorageCtrl = (function() {
       })
       // then reset Local Storage
       localStorage.setItem('items', JSON.stringify(items));
+    },
+    clearAllItemsFromStorage: function() {
+      localStorage.removeItem('items');
     }
   }
 })();
@@ -476,6 +479,9 @@ const AppCtrl = (function(ItemCtrl, StorageCtrl, UICtrl) {
 
     // remove from UI
     UICtrl.removeItems();
+
+    // clear from Local Storage
+    StorageCtrl.clearAllItemsFromStorage();
 
     // hide the <ul>
     UICtrl.hideUlLineList();
