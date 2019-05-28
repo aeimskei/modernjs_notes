@@ -1183,7 +1183,7 @@ const data = {
 }
 ```
 
-kbd>![alt text](img/localstorage02.png "screenshot")</kbd>
+<kbd>![alt text](img/localstorage02.png "screenshot")</kbd>
 
 ## Delete & Clear Data from Local Storage
 
