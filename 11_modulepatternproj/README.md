@@ -1248,5 +1248,26 @@ clearAllItemsFromStorage: function() {
 }
 ```
 
-Then call it in `AppCtrl`:
+Then call it in `AppCtrl` in `clearAllItemsClick` after `UICtrl.removeItems()`:
 
+```
+// clear items event
+const clearAllItemsClick = function() {
+  // delete all items from data structure
+  ItemCtrl.clearAllItems();
+
+  const totalCalories = ItemCtrl.getTotalCalories();
+  UICtrl.showTotalCalories(totalCalories);
+
+  UICtrl.removeItems();
+
+  // clear from Local Storage
+  StorageCtrl.clearAllItemsFromStorage();
+
+  UICtrl.hideUlLineList();
+}
+```
+
+# Summary of Project of Pure Vanilla JavaScript
+
+There you go, the app was made of pure Vanilla JavaScript with no libraries, no jQuery, no frameworks, no compiling, no build-tools :) All pure Vanilla JavaScript just working with the DOM, Local Storage and Module Pattern JavaScript.
